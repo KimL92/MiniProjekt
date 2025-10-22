@@ -1,12 +1,19 @@
 package com.example.miniprojekt.Repository;
 
 import com.example.miniprojekt.Model.WishItemModel;
-import com.example.miniprojekt.Model.WishListModel;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class WishItemRepository {
 
+    private final JdbcTemplate jdbcTemplate;
+
+    public WishItemRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     public void deleteItemTitle(String itemTitle) {
         WishItemModel existing = findWishItemByTitle(itemTitle);
@@ -17,18 +24,22 @@ public class WishItemRepository {
 
 
     public WishItemModel findWishItemByTitle(String itemTitle) {
-        String sql = "SELECT * FROM attraction WHERE LOWER(name)=LOWER(?)";
-        List<TouristAttraction> list = jdbcTemplate.query(sql, (rs, rowNum) -> {
-            int id = rs.getInt("id");
-            return new TouristAttraction(
-                    rs.getInt("id"),
-                    rs.getString("name"),
-                    rs.getString("description"),
-                    rs.getString("location"),
-                    getTouristAttractionTags(id)
+        String sql = "SELECT * FROM wishItem WHERE ?";
+        List<WishItemModel> list = jdbcTemplate.query(sql, (rs, rowNum) -> {
+            int id = rs.getInt("itemId");
+            return new WishItemModel(
+                    rs.getInt("itemId"),
+                    rs.getString("itemTitle"),
+                    rs.getString("itemDescription"),
+                    rs.getInt("itemPrice")
             );
-        }, name);
+        }, itemTitle);
         return list.isEmpty() ? null : list.get(0);
+    }
+
+    public void createWishItem(int itemId, String itemTitle ,String itemDescription, int itemPrice ){
+        jdbcTemplate.update("INSERT INTO wishItem (itemId, itemTitle, itemDescription, itemPrice) VALUES (?, ?, ?,?)");
+
     }
 }
 

@@ -6,7 +6,7 @@ public class WishItemModel {
     private String itemDescription;
     private int itemPrice;
 
-    public WishItemModel(int price , int id, String itemTitle, String description) {
+    public WishItemModel( int id, String itemTitle, String description, int price ) {
         this.itemId = id;
         this.itemTitle = itemTitle;
         this.itemDescription = description;
