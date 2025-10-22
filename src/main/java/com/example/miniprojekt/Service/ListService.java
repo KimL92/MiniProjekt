@@ -1,10 +1,10 @@
 package com.example.miniprojekt.Service;
 
-import com.example.miniprojekt.Repository.ListRepository;
+import com.example.miniprojekt.Repository.WishItemRepository;
 
 public class ListService {
     public void deleteItemTitle(String itemTitle) {
-        ListRepository.deleteItemTitle(itemTitle);
+        WishItemRepository.deleteItemTitle(itemTitle);
     }
 
 }

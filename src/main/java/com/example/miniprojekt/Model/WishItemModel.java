@@ -1,28 +1,28 @@
 package com.example.miniprojekt.Model;
 
-public class ItemListModel {
+public class WishItemModel {
     private int itemId;
     private String itemTitle;
     private String itemDescription;
-    private int price;
+    private int itemPrice;
 
-    public ItemListModel(int price , int id, String itemTitle, String description) {
+    public WishItemModel(int price , int id, String itemTitle, String description) {
         this.itemId = id;
         this.itemTitle = itemTitle;
         this.itemDescription = description;
-        this.price = price;
+        this.itemPrice = price;
     }
 
     public int getItemId() {
         return itemId;
     }
 
-    public int getPrice(){
-        return price;
+    public int getItemPrice(){
+        return itemPrice;
     }
 
     public void setPrice(){
-        this.price = price;
+        this.itemPrice = itemPrice;
     }
 
     public void setItemId(int itemId){
