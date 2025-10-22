@@ -1,13 +1,12 @@
 package com.example.miniprojekt.Model;
 
-public class ItemList {
+public class ItemListModel {
     private int itemId;
     private String itemTitle;
     private String itemDescription;
     private int price;
 
-
-    public ItemList(int price , int id, String itemTitle, String description) {
+    public ItemListModel(int price , int id, String itemTitle, String description) {
         this.itemId = id;
         this.itemTitle = itemTitle;
         this.itemDescription = description;
