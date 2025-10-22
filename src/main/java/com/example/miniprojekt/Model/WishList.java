@@ -1,40 +1,39 @@
 package com.example.miniprojekt.Model;
 
 public class WishList {
-    private int id;
-    private String title;
-    private String description;
+    private int itemId;
+    private String itemTitle;
+    private String itemDescription;
 
-
-    public WishList(int id, String title, String description) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
+    public WishList(int id, String itemTitle, String description) {
+        this.itemId = id;
+        this.itemTitle = itemTitle;
+        this.itemDescription = description;
     }
 
-    public int getId() {
-        return id;
+    public int getItemId() {
+        return itemId;
     }
 
 
-    public void setId(int id){
-        this.id = id;
+    public void setItemId(int itemId){
+        this.itemId = itemId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getItemTitle() {
+        return itemTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setItemTitle(String itemTitle) {
+        this.itemTitle = itemTitle;
     }
 
-    public String getDescription() {
-        return description;
+    public String getItemDescription() {
+        return itemDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setItemDescription(String itemDescription) {
+        this.itemDescription = itemDescription;
     }
 
 
