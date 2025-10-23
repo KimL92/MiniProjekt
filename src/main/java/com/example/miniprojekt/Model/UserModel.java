@@ -6,7 +6,7 @@ public class UserModel {
     private long userId;
     private String userName;
     private String email;
-    private String password;
+    private String userPassword;
     private LocalDate timeCreated;
 
     public long getUserId() {
@@ -33,12 +33,12 @@ public class UserModel {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
     public LocalDate getTimeCreated() {

@@ -5,6 +5,6 @@ import java.util.List;
 //public class WishListModel {
 //    private int wishListId;
 //    private String wishListItem;
-//    private String wishListname;
+//    private String wishListName;
 //    private List<WishItem> wishItemList;
 //}
