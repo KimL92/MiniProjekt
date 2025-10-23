@@ -30,7 +30,7 @@ public class WishItemRepository {
     public WishItemModel findWishItemByTitle(String itemTitle) {
         String sql = "SELECT * FROM wishItem WHERE ?";
         List<WishItemModel> list = jdbcTemplate.query(sql, (rs, rowNum) -> {
-            int id = rs.getInt("itemId");
+            int itemId = rs.getInt("itemId");
             return new WishItemModel(
                     rs.getInt("itemId"),
                     rs.getString("itemTitle"),
