@@ -15,6 +15,10 @@ public class WishItemRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    public void saveWishItem(WishItemModel wishItem) {
+
+    }
+
     public void deleteItemTitle(String itemTitle) {
         WishItemModel existing = findWishItemByTitle(itemTitle);
         if (existing != null) {
