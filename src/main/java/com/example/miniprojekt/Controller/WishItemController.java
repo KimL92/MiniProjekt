@@ -17,23 +17,23 @@ public class WishItemController {
 
     private WishItemService wishItemService;
 
-    public WishItemController(WishItemService wishItemService){
+    public WishItemController(WishItemService wishItemService) {
         this.wishItemService = wishItemService;
     }
 
     // test for at se om det virkede.
     @GetMapping
-    public String createWishItem(){
-            String itemTitle = "hej";
-            String itemDescription = "fedt";
-            double itemPrice = 899;
-            wishItemService.createWishItem( itemTitle, itemDescription, itemPrice);
+    public String createWishItem() {
+        String itemTitle = "hej";
+        String itemDescription = "fedt";
+        double itemPrice = 899;
+        wishItemService.createWishItem(itemTitle, itemDescription, itemPrice);
 
-            return "createItem";
+        return "createItem";
     }
 
     @GetMapping("/creat")
-    public String createWishItem(Model model){
+    public String createWishItem(Model model) {
         model.addAttribute("wishItem", new WishItemModel());
 
         return "createItem";
@@ -47,14 +47,12 @@ public class WishItemController {
 
 
     @GetMapping("/all")
-    public String showAllItems(Model model){
-        List<WishItemModel>items = wishItemService.getAllItems();
+    public String showAllItems(Model model) {
+        List<WishItemModel> items = wishItemService.getAllItems();
         model.addAttribute("items", items);
 
         return "viewItems"; // vi skal lave en html til det
     }
-
-
 
 
     @PostMapping("/delete/{itemTitle}")
@@ -62,6 +60,9 @@ public class WishItemController {
         wishItemService.deleteItemTitle(itemTitle);
         return "redirect:/WishItem/all";
     }
+
+    //
+
 
     // TODO vi skal få lavet den sidste endpoint i Denne her Controller - det er edit - husk os at at kigge på repo og service-
     //  fra mohamed. husk skrive noter så vi kan forklare det til hinanden. god weekend.
@@ -80,9 +81,22 @@ public class WishItemController {
 //        return "updateAttraction";
 //    }
 //
+
     @PostMapping("/{name}/update")
     public String updateItem(@PathVariable String itemTitle, @ModelAttribute WishItemModel wishItem) {
         wishItemService.saveWishItem(wishItem);
         return "redirect:/attractions/all";
     }
-}
+
+    @GetMapping("/{name}/edit")
+    public String showEditWishItem(@PathVariable String name, Model model) {
+        WishItemModel item = wishItemService.findWishItemByTitle(name);
+        if (item == null) {
+            return "redirect:/WishItem/all";
+        }
+        model.addAttribute("wishItem", item);
+        return "editItem";
+        }
+    }
+
+

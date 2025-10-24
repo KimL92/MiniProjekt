@@ -1,5 +1,6 @@
 package com.example.miniprojekt.Service;
 
+import com.example.miniprojekt.Controller.WishItemController;
 import com.example.miniprojekt.Model.WishItemModel;
 import com.example.miniprojekt.Repository.WishItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,13 @@ public class WishItemService {
 
     public WishItemService  (WishItemRepository wishItemRepository){
         this.wishItemRepository = wishItemRepository;
+    }
+
+    public WishItemModel findWishItemByTitle(String name) {
+        return wishItemRepository.getAllItems().stream()
+                .filter(item -> item.getItemTitle().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
     }
 
 
