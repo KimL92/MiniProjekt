@@ -15,9 +15,6 @@ public class WishItemRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void saveWishItem(WishItemModel wishItem) {
-
-    }
 
     public void deleteItemTitle(String itemTitle) {
         WishItemModel existing = findWishItemByTitle(itemTitle);
@@ -47,15 +44,33 @@ public class WishItemRepository {
 
     }
 
-    public WishItemModel saveItemTitle(WishItemModel wishItemModel) {
+    public WishItemModel saveWishItem(WishItemModel wishItemModel) {
         WishItemModel existing = findWishItemByTitle(wishItemModel.getItemTitle());
         if (existing != null) {
             jdbcTemplate.update("UPDATE itemTitle SET itemDescription=?,itemPrice=? WHERE itemTitle",
                     wishItemModel.getItemDescription(), wishItemModel.getItemPrice(), wishItemModel.getItemTitle());
 
-            Integer itemId = jdbcTemplate.queryForObject("SELECT itemId From wishItemModel WHERE itemId=? ",
+            Integer itemId = jdbcTemplate.queryForObject("SELECT itemId From WishItemModel WHERE itemId=? ",
                     Integer.class, wishItemModel.getItemTitle());
-            jdbcTemplate.update("DELETE FROM WHERE ")
+
+            wishItemModel.setItemId(itemId);
+            return wishItemModel;
+
+        }else {
+            // bois hernedunder   opretter den et nyt item
+            jdbcTemplate.update("INSERT INTO WishiItemModel(itemTitle, itemDescription ,itemPrice) VALUES (?, ?, ?)",
+            wishItemModel.getItemTitle(), wishItemModel.getItemDescription(),wishItemModel.getItemPrice()
+            );
+
+
+            // drenge hernede henter vi det nye itemId
+            Integer itemId = jdbcTemplate.queryForObject("SELECT itemId FROM WishItemModel WHERE itemTitle=?",
+                    Integer.class,
+                    wishItemModel.getItemTitle()
+            );
+
+            wishItemModel.setItemId(itemId);
+            return wishItemModel;
 
         }
     }

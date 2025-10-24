@@ -37,8 +37,8 @@ public class WishItemController {
     }
 
     @PostMapping("/save")
-    public String saveWishItem(@ModelAttribute WishItemModel WishItem) {
-        WishItemService.saveWishItem(WishItem);
+    public String saveWishItem(@ModelAttribute WishItemModel wishItem) {
+        WishItemService.saveWishItem(wishItem);
         return "redirect:/WishItem";
     }
 
