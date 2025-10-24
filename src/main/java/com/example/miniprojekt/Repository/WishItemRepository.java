@@ -39,8 +39,9 @@ public class WishItemRepository {
     }
     //
 
-    public void createWishItem(int itemId, String itemTitle, String itemDescription, int itemPrice) {
-        jdbcTemplate.update("INSERT INTO wishItem (itemId, itemTitle, itemDescription, itemPrice) VALUES (?, ?, ?,?)");
+    public void createWishItem(String itemTitle, String itemDescription, double itemPrice) {
+        jdbcTemplate.update("INSERT INTO wishItem ( itemTitle, itemDescription, itemPrice) VALUES (?, ?, ?)",
+        itemTitle, itemDescription,itemPrice );
 
     }
 

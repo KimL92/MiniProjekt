@@ -2,6 +2,7 @@ package com.example.miniprojekt.Controller;
 
 import com.example.miniprojekt.Model.WishItemModel;
 import com.example.miniprojekt.Service.WishItemService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,21 +13,29 @@ import java.util.ArrayList;
 @RequestMapping("/WishItem")
 public class WishItemController {
 
+
     private WishItemService wishItemService;
 
     public WishItemController(WishItemService wishItemService){
         this.wishItemService = wishItemService;
     }
 
+    // test for at se om det virkede.
     @GetMapping
     public String createWishItem(){
-            int id = 1;
             String itemTitle = "hej";
             String itemDescription = "fedt";
-            int itemPrice = 899;
-            wishItemService.createWishItem(id, itemTitle, itemDescription, itemPrice);
+            double itemPrice = 899;
+            wishItemService.createWishItem( itemTitle, itemDescription, itemPrice);
 
             return "createItem";
+    }
+
+    @GetMapping("/creat")
+    public String createWishItem(Model model){
+        model.addAttribute("wishItem", new WishItemModel());
+
+        return "createItem";
     }
 
 

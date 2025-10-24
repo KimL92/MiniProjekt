@@ -4,9 +4,13 @@ public class WishItemModel {
     private Integer itemId;
     private String itemTitle;
     private String itemDescription;
-    private int itemPrice;
+    private double itemPrice;
 
-    public WishItemModel( Integer itemId, String itemTitle, String itemDescription, int itemPrice ) {
+    public WishItemModel(){
+
+    }
+
+    public WishItemModel( Integer itemId, String itemTitle, String itemDescription, double itemPrice ) {
         this.itemId = itemId;
         this.itemTitle = itemTitle;
         this.itemDescription = itemDescription;
@@ -17,11 +21,11 @@ public class WishItemModel {
         return itemId;
     }
 
-    public int getItemPrice(){
+    public double getItemPrice(){
         return itemPrice;
     }
 
-    public void setItemPrice(){
+    public void setItemPrice(double itemPrice){
         this.itemPrice = itemPrice;
     }
 
