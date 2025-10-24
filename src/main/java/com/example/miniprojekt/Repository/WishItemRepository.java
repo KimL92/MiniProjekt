@@ -57,7 +57,7 @@ public class WishItemRepository {
             return wishItemModel;
 
         }else {
-            // bois hernedunder   opretter den et nyt item
+            // bois herned under opretter den et nyt item
             jdbcTemplate.update("INSERT INTO WishiItemModel(itemTitle, itemDescription ,itemPrice) VALUES (?, ?, ?)",
             wishItemModel.getItemTitle(), wishItemModel.getItemDescription(),wishItemModel.getItemPrice()
             );
