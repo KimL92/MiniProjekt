@@ -36,11 +36,11 @@ public class WishItemController {
         return "redirect:/WishItem";
     }
 
-//    @PostMapping("/save")
-//    public String saveWishItem(@ModelAttribute WishItemModel WishItem) {
-//        WishItemService.saveWishItem(WishItem);
-//        return "redirect:/WishItem";
-//    }
+    @PostMapping("/save")
+    public String saveWishItem(@ModelAttribute WishItemModel WishItem) {
+        WishItemService.saveWishItem(WishItem);
+        return "redirect:/WishItem";
+    }
 
 //    @GetMapping("/{name}/edit")
 //    public String showEditForm(@PathVariable String name, Model model) {

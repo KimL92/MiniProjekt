@@ -42,9 +42,22 @@ public class WishItemRepository {
     }
     //
 
-    public void createWishItem(int itemId, String itemTitle ,String itemDescription, int itemPrice ){
+    public void createWishItem(int itemId, String itemTitle, String itemDescription, int itemPrice) {
         jdbcTemplate.update("INSERT INTO wishItem (itemId, itemTitle, itemDescription, itemPrice) VALUES (?, ?, ?,?)");
 
+    }
+
+    public WishItemModel saveItemTitle(WishItemModel wishItemModel) {
+        WishItemModel existing = findWishItemByTitle(wishItemModel.getItemTitle());
+        if (existing != null) {
+            jdbcTemplate.update("UPDATE itemTitle SET itemDescription=?,itemPrice=? WHERE itemTitle",
+                    wishItemModel.getItemDescription(), wishItemModel.getItemPrice(), wishItemModel.getItemTitle());
+
+            Integer itemId = jdbcTemplate.queryForObject("SELECT itemId From wishItemModel WHERE itemId=? ",
+                    Integer.class, wishItemModel.getItemTitle());
+            jdbcTemplate.update("DELETE FROM WHERE ")
+
+        }
     }
 }
 

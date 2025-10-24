@@ -1,19 +1,19 @@
 package com.example.miniprojekt.Model;
 
 public class WishItemModel {
-    private int itemId;
+    private Integer itemId;
     private String itemTitle;
     private String itemDescription;
     private int itemPrice;
 
-    public WishItemModel( int id, String itemTitle, String description, int price ) {
-        this.itemId = id;
+    public WishItemModel( Integer itemId, String itemTitle, String itemDescription, int itemPrice ) {
+        this.itemId = itemId;
         this.itemTitle = itemTitle;
-        this.itemDescription = description;
-        this.itemPrice = price;
+        this.itemDescription = itemDescription;
+        this.itemPrice = itemPrice;
     }
 
-    public int getItemId() {
+    public Integer getItemId() {
         return itemId;
     }
 
@@ -21,11 +21,11 @@ public class WishItemModel {
         return itemPrice;
     }
 
-    public void setPrice(){
+    public void setItemPrice(){
         this.itemPrice = itemPrice;
     }
 
-    public void setItemId(int itemId){
+    public void setItemId(Integer itemId){
         this.itemId = itemId;
     }
 
