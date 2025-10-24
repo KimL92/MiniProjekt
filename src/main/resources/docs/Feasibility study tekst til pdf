@@ -1,0 +1,127 @@
+Feasibility Study – “Ønskeskyen” (Digital ønskeseddel)
+1. Projektidé
+
+Projekt: Ønskeskyen – en digital ønskeseddel
+Formål: At give brugere mulighed for at oprette, gemme og dele ønskesedler online på en nem og overskuelig måde.
+Målgruppe: Personer, der ønsker at samle og dele ønsker til fødselsdage, jul, bryllupper eller andre begivenheder.
+MVP-mål:
+
+Brugeren kan oprette en konto
+
+Brugeren kan oprette en ønskeseddel
+
+Brugeren kan tilføje og gemme ønsker
+
+2. Teknisk feasibility
+
+Formål: At vurdere, om det teknisk er muligt at udvikle systemet inden for to uger.
+
+Teknologier:
+
+Frontend: HTML, CSS, JavaScript
+
+Backend: Java (Spring Boot)
+
+Database: MySQL (lokal eller Azure)
+
+Deployment: Azure App Service (gratis via student plan)
+
+CI/CD: GitHub Actions (build + test + deploy)
+
+Test: Unit tests i Java og statisk kodeanalyse med Qodana
+
+Vurdering:
+
+Gruppen har allerede erfaring med Java, SQL og GitHub fra tidligere projekter.
+
+Azure og CI/CD kræver lidt ekstra læring, men kan gennemføres inden for tidsrammen.
+
+Konklusion: Teknisk gennemførligt med kendte teknologier og minimal læringskurve.
+
+3. Økonomisk feasibility
+
+Formål: At vurdere om projektet kan gennemføres uden økonomiske barrierer.
+
+Forudsætninger:
+
+Alle værktøjer og platforme (GitHub, IntelliJ, Azure Student, MySQL) er gratis.
+
+Ingen lønninger eller eksterne udgifter.
+
+Projektet udføres af studerende i undervisningstiden.
+
+Estimeret arbejdstid: ca. 10 arbejdsdage over 2 uger.
+
+Konklusion: Projektet er økonomisk fuldt realistisk, da alle værktøjer er gratis og arbejdstiden er overskuelig.
+
+4. Organisatorisk feasibility
+
+Formål: At vurdere om gruppen, kompetencerne og samarbejdet gør projektet gennemførligt.
+
+Arbejdsmetode:
+
+Scrum anvendes som agil metode.
+
+GitHub Projects bruges som Scrum board med user stories og tasks.
+
+Planning Poker bruges til estimering af opgaver.
+
+Gruppen holder korte daglige statusmøder (Daily Scrum).
+
+Roller i gruppen:
+
+Scrum Master – holder styr på planlægning og proces.
+
+Product Owner – prioriterer funktioner og krav.
+
+Developers – koder, tester og dokumenterer.
+
+Kompetencer:
+
+Erfaring med Java, SQL, HTML/CSS, Git, og projektarbejde fra 1. semester.
+
+Konklusion: Organisatorisk gennemførligt – gruppen har de nødvendige kompetencer og planlægningsstruktur.
+
+5. Tidsmæssig feasibility
+
+Formål: At vurdere om opgaven kan gennemføres inden for to uger.
+
+Projektplan (2 uger):
+
+Sprint 1 (Uge 1):
+
+Opsætning af database og backend (User, Wishlist, Items).
+
+Simpel frontend til oprettelse af ønskeseddel.
+
+CI/CD workflow konfigureres i GitHub Actions.
+
+Unit tests + Qodana statisk analyse.
+
+Sprint 2 (Uge 2):
+
+Forbedret frontend-design.
+
+Funktion til deling af ønskeseddel (valgfrit).
+
+Integrationstest.
+
+Dokumentation (ER-diagram, klassediagram).
+
+Deployment til Azure.
+
+Konklusion: To uger er realistisk for et simpelt, men funktionelt MVP med fokus på kvalitet og stabilitet.
+
+6. Samlet konklusion
+
+Teknisk: Projektet kan udvikles med kendte teknologier.
+
+Økonomisk: Gratis værktøjer og realistisk tidsforbrug.
+
+Organisatorisk: Gruppen har de nødvendige kompetencer og bruger Scrum.
+
+Tidsmæssigt: To uger er tilstrækkeligt til at levere et MVP.
+
+Risici: CI/CD og Azure-deployment kan tage længere tid – derfor bør det prioriteres tidligt.
+
+Samlet vurdering: Projektet Ønskeskyen er teknisk, økonomisk, organisatorisk og tidsmæssigt gennemførligt som et 2-ugers miniprojekt.
