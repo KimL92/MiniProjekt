@@ -7,7 +7,6 @@ public class UserModel {
     private String userName;
     private String email;
     private String userPassword;
-    private LocalDate timeCreated;
 
     public long getUserId() {
         return userId;
@@ -39,13 +38,5 @@ public class UserModel {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
-    }
-
-    public LocalDate getTimeCreated() {
-        return timeCreated;
-    }
-
-    public void setTimeCreated(LocalDate timeCreated) {
-        this.timeCreated = timeCreated;
     }
 }
