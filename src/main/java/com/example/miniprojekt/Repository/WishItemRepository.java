@@ -40,7 +40,7 @@ public class WishItemRepository {
         }, itemTitle);
         return list.isEmpty() ? null : list.get(0);
     }
-    //gggg
+    //
 
     public void createWishItem(int itemId, String itemTitle ,String itemDescription, int itemPrice ){
         jdbcTemplate.update("INSERT INTO wishItem (itemId, itemTitle, itemDescription, itemPrice) VALUES (?, ?, ?,?)");
