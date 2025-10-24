@@ -13,9 +13,9 @@ public class WishItemService {
         this.wishItemRepository = wishItemRepository;
     }
 
-    public void saveWishItem(WishItemModel wishItem) {
-        return WishItemRepository.saveWishItem(wishItem);
-    }
+//    public void saveWishItem(WishItemModel wishItem) {
+//        return WishItemRepository.saveWishItem(wishItem);
+//    }
 
     public void deleteItemTitle(String itemTitle) {
         wishItemRepository.deleteItemTitle(itemTitle);
