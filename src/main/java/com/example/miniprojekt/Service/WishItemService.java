@@ -5,6 +5,8 @@ import com.example.miniprojekt.Repository.WishItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class WishItemService {
 
@@ -26,6 +28,10 @@ public class WishItemService {
 
     public void createWishItem( String itemTitle ,String itemDescription, double itemPrice){
         wishItemRepository.createWishItem(itemTitle ,itemDescription, itemPrice);
+    }
+
+    public List<WishItemModel> getAllItems(){
+        return wishItemRepository.getAllItems();
     }
 
 

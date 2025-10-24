@@ -1,6 +1,7 @@
 package com.example.miniprojekt.Repository;
 
 import com.example.miniprojekt.Model.WishItemModel;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -74,6 +75,11 @@ public class WishItemRepository {
             return wishItemModel;
 
         }
+    }
+//BeanPropertyRowMapper - Den matcher kolonnenavne med felter i klassen - så vi ikke skal hardkode rs,rowNum;
+    public List<WishItemModel> getAllItems() {
+    String sql = "SELECT * FROM WishItemModel";
+    return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(WishItemModel.class));
     }
 }
 

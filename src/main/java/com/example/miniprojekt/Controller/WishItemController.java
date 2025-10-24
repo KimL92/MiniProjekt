@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/WishItem")
@@ -38,18 +39,32 @@ public class WishItemController {
         return "createItem";
     }
 
-
-    @PostMapping("/delete/{itemTitle}")
-    public String deleteItemTitle(@PathVariable String itemTitle) {
-        wishItemService.deleteItemTitle(itemTitle);
-        return "redirect:/WishItem";
-    }
-
     @PostMapping("/save")
     public String saveWishItem(@ModelAttribute WishItemModel wishItem) {
         wishItemService.saveWishItem(wishItem);
         return "redirect:/WishItem";
     }
+
+
+    @GetMapping("/all")
+    public String showAllItems(Model model){
+        List<WishItemModel>items = wishItemService.getAllItems();
+        model.addAttribute("items", items);
+
+        return "viewItems"; // vi skal lave en html til det
+    }
+
+
+
+
+    @PostMapping("/delete/{itemTitle}")
+    public String deleteItemTitle(@PathVariable String itemTitle) {
+        wishItemService.deleteItemTitle(itemTitle);
+        return "redirect:/WishItem/all";
+    }
+
+    // TODO vi skal få lavet den sidste endpoint i Denne her Controller - det er edit - husk os at at kigge på repo og service-
+    //  fra mohamed. husk skrive noter så vi kan forklare det til hinanden. god weekend.
 
 //    @GetMapping("/{name}/edit")
 //    public String showEditForm(@PathVariable String name, Model model) {
@@ -65,10 +80,9 @@ public class WishItemController {
 //        return "updateAttraction";
 //    }
 //
-//    @PostMapping("/{name}/update")
-//    public String updateAttraction(@PathVariable String name,
-//                                   @ModelAttribute TouristAttraction attraction) {
-//        touristService.saveAttraction(attraction);
-//        return "redirect:/attractions";
-//    }
+    @PostMapping("/{name}/update")
+    public String updateItem(@PathVariable String itemTitle, @ModelAttribute WishItemModel wishItem) {
+        wishItemService.saveWishItem(wishItem);
+        return "redirect:/attractions/all";
+    }
 }
