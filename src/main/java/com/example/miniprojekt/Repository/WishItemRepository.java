@@ -47,7 +47,7 @@ public class WishItemRepository {
     public WishItemModel saveWishItem(WishItemModel wishItemModel) {
         WishItemModel existing = findWishItemByTitle(wishItemModel.getItemTitle());
         if (existing != null) {
-            jdbcTemplate.update("UPDATE itemTitle SET itemDescription=?,itemPrice=? WHERE itemTitle",
+            jdbcTemplate.update("UPDATE itemTitle SET itemDescription=?,itemPrice=? WHERE itemTitle=?",
                     wishItemModel.getItemDescription(), wishItemModel.getItemPrice(), wishItemModel.getItemTitle());
 
             Integer itemId = jdbcTemplate.queryForObject("SELECT itemId From WishItemModel WHERE itemId=? ",
@@ -58,7 +58,7 @@ public class WishItemRepository {
 
         }else {
             // bois herned under opretter den et nyt item
-            jdbcTemplate.update("INSERT INTO WishiItemModel(itemTitle, itemDescription ,itemPrice) VALUES (?, ?, ?)",
+            jdbcTemplate.update("INSERT INTO WishItemModel(itemTitle, itemDescription ,itemPrice) VALUES (?, ?, ?)",
             wishItemModel.getItemTitle(), wishItemModel.getItemDescription(),wishItemModel.getItemPrice()
             );
 
