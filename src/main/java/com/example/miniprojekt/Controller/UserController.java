@@ -49,7 +49,8 @@ public class UserController {
     @PostMapping("/delete/{user}")
     public String deleteUser(@PathVariable String user) {
         userService.deleteUser(user);
-        return "redirect:/WishItem/all";
+        // lav en anden redirect til en main side
+        return "redirect:/?";
     }
 }
 
