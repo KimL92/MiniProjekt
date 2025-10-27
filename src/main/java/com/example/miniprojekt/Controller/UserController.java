@@ -40,6 +40,11 @@ public class UserController {
         return "register-user";
     }
 
+    @PostMapping("login")
+    public String login(@RequestParam String email, @RequestParam String password,HttpSession session, Model model){
+    UserModel userModel = userService.logInUser(email,password);
+
+    }
 
     @PostMapping("/logout")
     public String logout(HttpSession session) {

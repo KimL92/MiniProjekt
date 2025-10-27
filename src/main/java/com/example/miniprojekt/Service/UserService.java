@@ -25,4 +25,16 @@ public class UserService {
     }
 
 
+    public UserModel logInUser(String email, String password) {
+        System.out.println("Forsøger login: " + email);
+        UserModel user = userRepository.logInUser(email, password);  // RETTET: modtag UserModel
+
+        if (user != null) {
+            System.out.println("✓ Login succesfuld: " + user.getUserName());
+        } else {
+            System.out.println("✗ Login fejlet");
+        }
+
+        return user;  // RETTET: returner user
+    }
 }
