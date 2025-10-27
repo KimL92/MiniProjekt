@@ -28,9 +28,9 @@ public class WishItemRepository {
     public WishItemModel findWishItemByTitle(String itemTitle) {
         String sql = "SELECT * FROM wishItem WHERE ?";
         List<WishItemModel> list = jdbcTemplate.query(sql, (rs, rowNum) -> {
-            int itemId = rs.getInt("itemId");
+            int itemID = rs.getInt("itemID");
             return new WishItemModel(
-                    rs.getInt("itemId"),
+                    rs.getInt("itemID"),
                     rs.getString("itemTitle"),
                     rs.getString("itemDescription"),
                     rs.getInt("itemPrice")
@@ -41,8 +41,9 @@ public class WishItemRepository {
     //
 
     public void createWishItem(String itemTitle, String itemDescription, double itemPrice) {
-        jdbcTemplate.update("INSERT INTO wishItem ( itemTitle, itemDescription, itemPrice) VALUES (?, ?, ?)",
+        jdbcTemplate.update("INSERT INTO wishitemmodel ( itemTitle, itemDescription, itemPrice) VALUES (?, ?, ?)",
         itemTitle, itemDescription,itemPrice );
+        System.out.println(itemPrice + itemTitle + itemDescription);
 
     }
 
@@ -52,26 +53,26 @@ public class WishItemRepository {
             jdbcTemplate.update("UPDATE itemTitle SET itemDescription=?,itemPrice=? WHERE itemTitle=?",
                     wishItemModel.getItemDescription(), wishItemModel.getItemPrice(), wishItemModel.getItemTitle());
 
-            Integer itemId = jdbcTemplate.queryForObject("SELECT itemId From WishItemModel WHERE itemId=? ",
+            Integer itemID = jdbcTemplate.queryForObject("SELECT itemID From WishItemModel WHERE itemID=? ",
                     Integer.class, wishItemModel.getItemTitle());
 
-            wishItemModel.setItemId(itemId);
+            wishItemModel.setItemID(itemID);
             return wishItemModel;
 
         }else {
             // bois herned under opretter den et nyt item
-            jdbcTemplate.update("INSERT INTO WishItemModel(itemTitle, itemDescription ,itemPrice) VALUES (?, ?, ?)",
+            jdbcTemplate.update("INSERT INTO wishitemmodel(itemTitle, itemDescription ,itemPrice) VALUES (?, ?, ?)",
             wishItemModel.getItemTitle(), wishItemModel.getItemDescription(),wishItemModel.getItemPrice()
             );
 
 
-            // drenge hernede henter vi det nye itemId
-            Integer itemId = jdbcTemplate.queryForObject("SELECT itemId FROM WishItemModel WHERE itemTitle=?",
+            // drenge hernede henter vi det nye itemID
+            Integer itemID = jdbcTemplate.queryForObject("SELECT itemID FROM wishitemmodel WHERE itemTitle=?",
                     Integer.class,
                     wishItemModel.getItemTitle()
             );
 
-            wishItemModel.setItemId(itemId);
+            wishItemModel.setItemID(itemID);
             return wishItemModel;
 
         }

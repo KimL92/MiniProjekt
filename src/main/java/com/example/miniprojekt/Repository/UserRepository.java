@@ -1,5 +1,19 @@
 package com.example.miniprojekt.Repository;
 
-public class UserRepository {
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
+@Repository
+public class UserRepository {
+    private final JdbcTemplate jdbcTemplate;
+
+    public UserRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public void createUser(String userName, String email, String userPassword) {
+        jdbcTemplate.update("INSERT INTO usermodel(userName, email, userPassword) VALUES (?, ? , ?) ",
+                userName, email, userPassword);
+        System.out.println(userName + email + userPassword);
+    }
 }

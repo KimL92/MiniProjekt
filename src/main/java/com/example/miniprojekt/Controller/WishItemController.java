@@ -11,18 +11,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/WishItem")
+@RequestMapping("/wishitem")
 public class WishItemController {
 
 
-    private WishItemService wishItemService;
+    private final WishItemService wishItemService;
 
     public WishItemController(WishItemService wishItemService) {
         this.wishItemService = wishItemService;
     }
 
     // test for at se om det virkede.
-    @GetMapping
+    @GetMapping("/create")
     public String createWishItem() {
         String itemTitle = "hej";
         String itemDescription = "fedt";
@@ -32,7 +32,8 @@ public class WishItemController {
         return "createItem";
     }
 
-    @GetMapping("/creat")
+    // rigtige metode
+    @GetMapping("/createitem")
     public String createWishItem(Model model) {
         model.addAttribute("wishItem", new WishItemModel());
 

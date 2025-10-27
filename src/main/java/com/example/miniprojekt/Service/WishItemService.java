@@ -36,6 +36,7 @@ public class WishItemService {
 
     public void createWishItem( String itemTitle ,String itemDescription, double itemPrice){
         wishItemRepository.createWishItem(itemTitle ,itemDescription, itemPrice);
+        System.out.println(itemTitle + itemDescription + itemPrice);
     }
 
     public List<WishItemModel> getAllItems(){
