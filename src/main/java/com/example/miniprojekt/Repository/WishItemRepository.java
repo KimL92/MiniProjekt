@@ -16,7 +16,7 @@ public class WishItemRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-
+// TODO allan kan du forklare hvad du mener from item??
     public void deleteItemTitle(String itemTitle) {
         WishItemModel existing = findWishItemByTitle(itemTitle);
         if (existing != null) {

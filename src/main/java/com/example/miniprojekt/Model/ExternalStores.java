@@ -2,11 +2,23 @@ package com.example.miniprojekt.Model;
 
 
 public class ExternalStores {
-    private int storeID;
+    private long storeID;
     private String storeName;
     private String storeURL;
     private String storeDescription;
     private String storeCategory;
+
+    public ExternalStores(long storeID, String storeName, String storeURL, String storeDescription, String storeCategory) {
+        this.storeID = storeID;
+        this.storeName = storeName;
+        this.storeURL = storeURL;
+        this.storeDescription = storeDescription;
+        this.storeCategory = storeCategory;
+    }
+
+    public ExternalStores() {
+
+    }
 
 
     public String getStoreCategory() {
@@ -17,11 +29,11 @@ public class ExternalStores {
         this.storeCategory = storeCategory;
     }
 
-    public int getStoreID() {
+    public long getStoreID() {
         return storeID;
     }
 
-    public void setStoreID(int storeID) {
+    public void setStoreID(long storeID) {
         this.storeID = storeID;
     }
 
