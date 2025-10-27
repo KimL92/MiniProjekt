@@ -17,28 +17,4 @@ public class UserRepository {
                 userName, email, userPassword);
         System.out.println(userName + email + userPassword);
     }
-
-//    // RETTET: Brug queryForObject til SELECT og send parametre med
-//    public UserModel logInUser(String email, String password) {
-//        String sql = "SELECT * FROM usermodel WHERE email = ? AND userPassword = ?";
-//        try {
-//            return jdbcTemplate.queryForObject(sql, userRowMapper(), email, password);
-//        } catch (Exception e) {
-//            System.out.println("Login fejlet: Bruger ikke fundet");
-//            return null;
-//        }
-//    }
-
-//    private Class<UserModel> userRowMapper() {
-//        return (rs, rowNum) -> {
-//            UserModel user = new UserModel();
-//            user.setUserID(rs.getLong("userID"));
-//            user.setUserName(rs.getString("userName"));
-//            user.setEmail(rs.getString("email"));
-//            user.setUserPassword(rs.getString("userPassword"));
-//            return user;
-//        };
-//
-//    }
 }
-//}

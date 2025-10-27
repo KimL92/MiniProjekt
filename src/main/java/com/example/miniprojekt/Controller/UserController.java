@@ -40,38 +40,5 @@ public class UserController {
         return "register-user";
     }
 
-    @PostMapping("login")
-    public String login(@RequestParam String email, @RequestParam String password,HttpSession session, Model model){
-    UserModel userModel = userService.logInUser(email,password);
-
-    }
-
-    @PostMapping("/logout")
-    public String logout(HttpSession session) {
-        //Fjern brugerens session data
-        session.invalidate();
-        return "redirect:/wishitem";
-    }
-
-
-
-
-//    @PostMapping("/save")
-//    public String saveUser(@ModelAttribute UserModel user) {
-//        userService.saveUser(user);
-//        return "redirect:/user";
-//
-//    }
-
-
-
-
-//    @PostMapping("/delete/{user}")
-//    public String deleteUser(@PathVariable String user) {
-//        userService.deleteUser(user);
-//        // lav en anden redirect til en main side
-//        return "redirect:/?";
-//    }
 }
-
 
