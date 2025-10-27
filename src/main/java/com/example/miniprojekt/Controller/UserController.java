@@ -3,6 +3,7 @@ package com.example.miniprojekt.Controller;
 import com.example.miniprojekt.Model.UserModel;
 import com.example.miniprojekt.Service.UserService;
 import com.example.miniprojekt.Service.WishItemService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,19 +40,33 @@ public class UserController {
         return "register-user";
     }
 
-    @PostMapping("/save")
-    public String saveUser(@ModelAttribute UserModel user) {
-        userService.saveUser(user);
-        return "redirect:/user";
 
+    @PostMapping("/logout")
+    public String logout(HttpSession session) {
+        //Fjern brugerens session data
+        session.invalidate();
+        return "redirect:/wishitem";
     }
 
-    @PostMapping("/delete/{user}")
-    public String deleteUser(@PathVariable String user) {
-        userService.deleteUser(user);
-        // lav en anden redirect til en main side
-        return "redirect:/?";
-    }
+
+
+
+//    @PostMapping("/save")
+//    public String saveUser(@ModelAttribute UserModel user) {
+//        userService.saveUser(user);
+//        return "redirect:/user";
+//
+//    }
+
+
+
+
+//    @PostMapping("/delete/{user}")
+//    public String deleteUser(@PathVariable String user) {
+//        userService.deleteUser(user);
+//        // lav en anden redirect til en main side
+//        return "redirect:/?";
+//    }
 }
 
 
