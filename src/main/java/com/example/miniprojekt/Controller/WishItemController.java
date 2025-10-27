@@ -46,7 +46,6 @@ public class WishItemController {
         return "redirect:/WishItem";
     }
 
-
     @GetMapping("/all")
     public String showAllItems(Model model) {
         List<WishItemModel> items = wishItemService.getAllItems();

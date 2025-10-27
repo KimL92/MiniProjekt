@@ -6,16 +6,12 @@ import com.example.miniprojekt.Service.WishItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/wishitem")
 
 public class UserController {
-
 
     private final UserService userService;
 
@@ -43,12 +39,18 @@ public class UserController {
         return "register-user";
     }
 
-//    @PostMapping("/save")
-//    public String saveUser(@ModelAttribute UserModel user) {
-//        userService.saveUser(user);
-//        return "redirect:/user";
-//
-//    }
+    @PostMapping("/save")
+    public String saveUser(@ModelAttribute UserModel user) {
+        userService.saveUser(user);
+        return "redirect:/user";
+
+    }
+
+    @PostMapping("/delete/{user}")
+    public String deleteUser(@PathVariable String user) {
+        userService.deleteUser(user);
+        return "redirect:/WishItem/all";
+    }
 }
 
 
