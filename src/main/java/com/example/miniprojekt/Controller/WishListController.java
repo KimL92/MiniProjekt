@@ -30,16 +30,11 @@ public class WishListController {
         return "wishlists";
 
     }
-
-    @GetMapping("/create")
+// test
+    @GetMapping("/createwishlistt")
     public String createWishList() {
         String wishListName = "Alan til salg";
-        String wishListItem = "slik";
-        List<WishItemModel> wistItemList =
-                new ArrayList<>(Arrays.asList(new WishItemModel(1, "Slik", "Chokolade og karameller", 50.0),
-                new WishItemModel(2, "Lego", "Star Wars Lego-sæt", 899.0)
-        ));
-        wishListService.createWishList(wishListName, wishListItem, wistItemList);
+        wishListService.createWishList(wishListName);
 
         return "createItem";
     }

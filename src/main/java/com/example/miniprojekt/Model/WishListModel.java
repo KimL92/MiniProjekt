@@ -6,7 +6,7 @@ public class WishListModel {
     private int wishListID;
     private String wishListItem;
     private String wishListName;
-    private List<WishItemModel> wishItemList;
+    private String wishItemList;
 
 
     public WishListModel() {
@@ -36,11 +36,11 @@ public class WishListModel {
         this.wishListName = wishListName;
     }
 
-    public List<WishItemModel> getWishItemList() {
+    public String getWishItemList() {
         return wishItemList;
     }
 
-    public void setWishItemList(List<WishItemModel> wishItemList) {
+    public void setWishItemList(String wishItemList) {
         this.wishItemList = wishItemList;
     }
 }
