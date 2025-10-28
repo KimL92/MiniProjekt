@@ -1,5 +1,4 @@
 package com.example.miniprojekt.Controller;
 
-public class ListController {
-
+public class WishItemControllerTest {
 }

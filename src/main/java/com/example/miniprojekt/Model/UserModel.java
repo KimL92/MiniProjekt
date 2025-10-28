@@ -3,17 +3,17 @@ package com.example.miniprojekt.Model;
 import java.time.LocalDate;
 
 public class UserModel {
-    private long userId;
+    private long userID;
     private String userName;
     private String email;
     private String userPassword;
 
-    public long getUserId() {
-        return userId;
+    public long getUserID() {
+        return userID;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUserID(long userID) {
+        this.userID = userID;
     }
 
     public String getUserName() {
