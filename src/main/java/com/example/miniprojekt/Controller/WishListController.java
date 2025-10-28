@@ -23,7 +23,7 @@ public class WishListController {
     public WishListController(WishListService wishListService) {
         this.wishListService = wishListService;
     }
-
+    //test
     @GetMapping("/createwishlist")
     public String createWishList(Model model) {
         model.addAttribute("wishlistitem", new WishItemModel());

@@ -23,7 +23,7 @@ public class ExternalStoresController {
     public String createExternslStores(Model model) {
         model.addAttribute("externalstores", new ExternalStores());
 
-        return "createItem";
+        return "createitem";
     }
 
     //test
@@ -33,7 +33,7 @@ public class ExternalStoresController {
         String storeURL = "moha2200@stud.ek.dk";
         String storeDescription = "test123";
         String storeCategory = "flash";
-        externalService.createExternslStores(storeName, storeURL, storeDescription,storeCategory );
+        externalService.createExternalStores(storeName, storeURL, storeDescription,storeCategory );
 
         return "createstore";
 
