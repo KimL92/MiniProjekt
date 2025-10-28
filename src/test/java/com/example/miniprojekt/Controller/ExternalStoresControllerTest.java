@@ -46,7 +46,7 @@ public class ExternalStoresControllerTest {
                 .andExpect(view().name("createitem"))
                 .andExpect(model().attributeExists("externalstores"));
 
-        // ❌ fjern verify her, fordi controlleren ikke kalder servicen
+        // fjern verify her, fordi controlleren ikke kalder servicen
     }
 
     @Test
@@ -55,7 +55,7 @@ public class ExternalStoresControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("createstore"));
 
-        // ✅ denne controller-metode kalder externalService, så verify er korrekt her
+        // denne controller-metode kalder externalService, så verify er korrekt her
         verify(externalService, times(1))
                 .createExternalStores("zara", "moha2200@stud.ek.dk", "test123", "flash");
     }
