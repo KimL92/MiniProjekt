@@ -20,7 +20,7 @@ public class WishItemRepository {
     public void deleteItemTitle(String itemTitle) {
         WishItemModel existing = findWishItemByTitle(itemTitle);
         if (existing != null) {
-            jdbcTemplate.update("DELETE FROM item WHERE itemTitle=?", itemTitle);
+            jdbcTemplate.update("DELETE FROM wishitemmodel WHERE itemTitle=?", itemTitle);
         }
     }
 

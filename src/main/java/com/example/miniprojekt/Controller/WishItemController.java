@@ -43,7 +43,7 @@ public class WishItemController {
     @PostMapping("/save")
     public String saveWishItem(@ModelAttribute WishItemModel wishItem) {
         wishItemService.saveWishItem(wishItem);
-        return "redirect:/WishItem";
+        return "redirect:/wishitem";
     }
 
     @GetMapping("/all")
@@ -57,21 +57,21 @@ public class WishItemController {
     @PostMapping("/delete/{itemTitle}")
     public String deleteItemTitle(@PathVariable String itemTitle) {
         wishItemService.deleteItemTitle(itemTitle);
-        return "redirect:/WishItem/all";
+        return "redirect:/wishitem/all";
     }
 
-
+    // TODO: ændre variabelnavne i nedenstående metode så det passer.
     @PostMapping("/{name}/update")
     public String updateItem(@PathVariable String itemTitle, @ModelAttribute WishItemModel wishItem) {
         wishItemService.saveWishItem(wishItem);
-        return "redirect:/attractions/all";
+        return "redirect:/wishitem/all";
     }
 
     @GetMapping("/{name}/edit")
     public String showEditWishItem(@PathVariable String name, Model model) {
         WishItemModel item = wishItemService.findWishItemByTitle(name);
         if (item == null) {
-            return "redirect:/WishItem/all";
+            return "redirect:/wishitem/all";
         }
         model.addAttribute("wishItem", item);
         return "editItem";
