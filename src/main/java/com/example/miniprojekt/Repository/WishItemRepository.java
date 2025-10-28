@@ -26,7 +26,7 @@ public class WishItemRepository {
 
 
     public WishItemModel findWishItemByTitle(String itemTitle) {
-        String sql = "SELECT * FROM wishItem WHERE ?";
+        String sql = "SELECT * FROM wishitemmodel WHERE ?";
         List<WishItemModel> list = jdbcTemplate.query(sql, (rs, rowNum) -> {
             int itemID = rs.getInt("itemID");
             return new WishItemModel(

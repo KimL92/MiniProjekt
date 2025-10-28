@@ -18,9 +18,9 @@ public class WishItemService {
         this.wishItemRepository = wishItemRepository;
     }
 
-    public WishItemModel findWishItemByTitle(String name) {
+    public WishItemModel findWishItemByTitle(String itemTitle) {
         return wishItemRepository.getAllItems().stream()
-                .filter(item -> item.getItemTitle().equalsIgnoreCase(name))
+                .filter(item -> item.getItemTitle().equalsIgnoreCase(itemTitle))
                 .findFirst()
                 .orElse(null);
     }
