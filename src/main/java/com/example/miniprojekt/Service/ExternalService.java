@@ -12,7 +12,7 @@ public class ExternalService {
     @Autowired
     private ExternalRepository externalRepository;
 
-    public void ExternalRepository  (ExternalRepository externalRepository){
+    public void ExternalRepository (ExternalRepository externalRepository){
         this.externalRepository = externalRepository;
     }
 
