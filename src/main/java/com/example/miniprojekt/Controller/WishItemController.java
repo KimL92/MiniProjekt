@@ -57,21 +57,24 @@ public class WishItemController {
     @PostMapping("/delete/{itemTitle}")
     public String deleteItemTitle(@PathVariable String itemTitle) {
         wishItemService.deleteItemTitle(itemTitle);
-        return "redirect:/wishitem/all";
+        return "redirect:/wishitem";
     }
 
     // TODO: ændre variabelnavne i nedenstående metode så det passer.
-    @PostMapping("/{name}/update")
-    public String updateItem(@PathVariable String itemTitle, @ModelAttribute WishItemModel wishItem) {
+    @PostMapping("/{itemTitle}/update")
+    public String updateItem(@PathVariable String itemTitle,
+                             @ModelAttribute WishItemModel wishItem) {
+        // giver modellen en title fra path'en
+        wishItem.setItemTitle(itemTitle);
         wishItemService.saveWishItem(wishItem);
-        return "redirect:/wishitem/all";
+        return "redirect:/wishitem";
     }
 
     @GetMapping("/{name}/edit")
     public String showEditWishItem(@PathVariable String name, Model model) {
         WishItemModel item = wishItemService.findWishItemByTitle(name);
         if (item == null) {
-            return "redirect:/wishitem/all";
+            return "redirect:/wishitem";
         }
         model.addAttribute("wishItem", item);
         return "editItem";

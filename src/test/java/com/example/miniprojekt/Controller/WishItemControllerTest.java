@@ -1,11 +1,10 @@
 package com.example.miniprojekt.Controller;
 
-import com.example.miniprojekt.Service.ExternalService;
 import com.example.miniprojekt.Service.WishItemService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.Mockito.verify;
@@ -13,10 +12,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(ExternalStoresController.class)
+@WebMvcTest(WishItemController.class)
 public class WishItemControllerTest {
 
-    @MockBean
+    @MockitoBean
     private WishItemService wishItemService;
 
     @Autowired
@@ -24,8 +23,7 @@ public class WishItemControllerTest {
 
     @Test
     void deleteItemTitle() throws Exception {
-        mockMvc.perform(post("/wishitem/delete/{itemTitle}")
-                        .param("itemTitle"))
+        mockMvc.perform(post("/wishitem/delete/{itemTitle}", "Nike Air Max"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/wishitem"));
 

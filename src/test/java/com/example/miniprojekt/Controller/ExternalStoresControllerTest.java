@@ -35,10 +35,4 @@ public class ExternalStoresControllerTest {
 
         verify(externalService).deleteExternalStore(5L);
     }
-
-
-
-
-
-
 }
