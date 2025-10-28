@@ -40,9 +40,9 @@ public class ExternalStoresController {
     }
 
     @PostMapping("/delete/{createexternalstore}")
-    public String deleteExternalStore(@RequestParam long storeId ) {
-        externalService.deleteExternalStore(storeId);
-        return "redirect:/WishItem";
+    public String deleteExternalStore(@RequestParam long storeID ) {
+        externalService.deleteExternalStore(storeID);
+        return "redirect:/wishitem";
     }
 
     //test " for at teste bois skal i skrive (http://localhost:8080/wishitem/delete-store?storeID=4)
@@ -52,7 +52,7 @@ public class ExternalStoresController {
 
         externalService.deleteExternalStore(4);
 
-        return "redirect:/WishItem";
+        return "redirect:/wishitem";
     }
 
 
