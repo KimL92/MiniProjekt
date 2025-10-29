@@ -5,10 +5,7 @@ import com.example.miniprojekt.Service.WishListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,9 +50,9 @@ public class WishListController {
         return "createItem";
     }
 
-    @GetMapping
-    public String getWishListByID(@RequestParam int wishlistID){
-        int wishlistIDtest= 1;
+    @GetMapping("/ID/{wishlistID}")
+    public String getWishListByID(@PathVariable int wishlistID){
+        int wishlistIDtest= 6;
         wishListService.getWishListByID(wishlistIDtest);
         return "getWishListByID";
     }

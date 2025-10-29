@@ -1,6 +1,7 @@
 package com.example.miniprojekt.Repository;
 
 import com.example.miniprojekt.Model.WishItemModel;
+import com.example.miniprojekt.Model.WishListModel;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -27,8 +28,10 @@ public class WishListRepository {
         wishListName);
     }
 
-    public void getWishListByID(int wishlistID){
-        jdbcTemplate.update("SELECT * from wishlist (wishlistID) VALUES (?)",
-                wishlistID);
+    public Integer getWishListByID(int wishlistID){
+       return jdbcTemplate.queryForObject("SELECT wishlistID FROM wishlist WHERE wishlistID = ?",
+                Integer.class,
+               wishlistID
+                       );
     }
 }

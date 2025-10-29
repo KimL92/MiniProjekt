@@ -26,8 +26,8 @@ public class WishListService {
 
     }
 
-    public void getWishListByID(int wishListID) {
-        wishListRepository.getWishListByID(wishListID);
+    public Integer getWishListByID(int wishListID) {
+      return wishListRepository.getWishListByID(wishListID);
 
       }
 
