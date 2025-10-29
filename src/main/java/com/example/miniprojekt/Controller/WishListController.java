@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,11 +33,20 @@ public class WishListController {
 
     }
 // test
-    @GetMapping("/createwishlistt")
-    public String createWishList() {
-        String wishListName = "Alan til salg";
-        wishListService.createWishList(wishListName);
+//    @GetMapping("/createwishlistt")
+//    public String createWishList() {
+//        int wishListName = "Alan til salg";
+//        wishListService.createWishList(wishListName);
+//
+//        return "createItem";
+//    }
 
+
+    @PostMapping
+    public String createWishList(@RequestParam long userID, @RequestParam String wishListName){
+        int wishListID = 22;
+        wishListService.createWishList(wishListName);
+        wishListService.createWishList_user(wishListID,userID);
         return "createItem";
     }
 }

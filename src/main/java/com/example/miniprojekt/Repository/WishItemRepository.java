@@ -20,30 +20,31 @@ public class WishItemRepository {
     public void deleteItemTitle(String itemTitle) {
         WishItemModel existing = findWishItemByTitle(itemTitle);
         if (existing != null) {
-            jdbcTemplate.update("DELETE FROM item WHERE itemTitle=?", itemTitle);
+            jdbcTemplate.update("DELETE FROM wishitem WHERE itemTitle=?", itemTitle);
         }
     }
 
 
     public WishItemModel findWishItemByTitle(String itemTitle) {
-        String sql = "SELECT * FROM wishitemmodel WHERE ?";
+        String sql = "SELECT * FROM wishitem WHERE ?";
         List<WishItemModel> list = jdbcTemplate.query(sql, (rs, rowNum) -> {
             int itemID = rs.getInt("itemID");
             return new WishItemModel(
                     rs.getInt("itemID"),
                     rs.getString("itemTitle"),
                     rs.getString("itemDescription"),
-                    rs.getInt("itemPrice")
+                    rs.getInt("itemPrice"),
+                    rs.getString("itemURL")
             );
         }, itemTitle);
         return list.isEmpty() ? null : list.get(0);
     }
     //
 
-    public void createWishItem(String itemTitle, String itemDescription, double itemPrice) {
-        jdbcTemplate.update("INSERT INTO wishitemmodel ( itemTitle, itemDescription, itemPrice) VALUES (?, ?, ?)",
-        itemTitle, itemDescription,itemPrice );
-        System.out.println(itemPrice + itemTitle + itemDescription);
+    public void createWishItem(String itemTitle, String itemDescription, double itemPrice, String itemURL) {
+        jdbcTemplate.update("INSERT INTO wishitem ( itemTitle, itemDescription, itemPrice, itemURL) VALUES (?,?, ?, ?)",
+        itemTitle, itemDescription,itemPrice, itemURL);
+        System.out.println(itemPrice + itemTitle + itemDescription + itemURL);
 
     }
 
@@ -61,13 +62,13 @@ public class WishItemRepository {
 
         }else {
             // bois herned under opretter den et nyt item
-            jdbcTemplate.update("INSERT INTO wishitemmodel(itemTitle, itemDescription ,itemPrice) VALUES (?, ?, ?)",
-            wishItemModel.getItemTitle(), wishItemModel.getItemDescription(),wishItemModel.getItemPrice()
+            jdbcTemplate.update("INSERT INTO wishitem(itemTitle, itemDescription ,itemPrice,itemURL) VALUES (?, ?, ?, ?)",
+            wishItemModel.getItemTitle(), wishItemModel.getItemDescription(),wishItemModel.getItemPrice(),wishItemModel.getItemURL()
             );
 
 
             // drenge hernede henter vi det nye itemID
-            Integer itemID = jdbcTemplate.queryForObject("SELECT itemID FROM wishitemmodel WHERE itemTitle=?",
+            Integer itemID = jdbcTemplate.queryForObject("SELECT itemID FROM wishitem WHERE itemTitle=?",
                     Integer.class,
                     wishItemModel.getItemTitle()
             );
@@ -79,7 +80,7 @@ public class WishItemRepository {
     }
 //BeanPropertyRowMapper - Den matcher kolonnenavne med felter i klassen - så vi ikke skal hardkode rs,rowNum;
     public List<WishItemModel> getAllItems() {
-    String sql = "SELECT * FROM WishItemModel";
+    String sql = "SELECT * FROM wishItem";
     return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(WishItemModel.class));
     }
 }

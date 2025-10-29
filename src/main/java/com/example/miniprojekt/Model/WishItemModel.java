@@ -5,16 +5,18 @@ public class WishItemModel {
     private String itemTitle;
     private String itemDescription;
     private double itemPrice;
+    private String itemURL;
 
     public WishItemModel(){
 
     }
 
-    public WishItemModel( Integer itemID, String itemTitle, String itemDescription, double itemPrice ) {
+    public WishItemModel( Integer itemID, String itemTitle, String itemDescription, double itemPrice, String itemURL) {
         this.itemID = itemID;
         this.itemTitle = itemTitle;
         this.itemDescription = itemDescription;
         this.itemPrice = itemPrice;
+        this.itemURL = itemURL;
     }
 
     public Integer getItemID() {
@@ -49,7 +51,13 @@ public class WishItemModel {
         this.itemDescription = itemDescription;
     }
 
+    public String getItemURL() {
+        return itemURL;
+    }
 
+    public void setItemURL(String itemURL) {
+        this.itemURL = itemURL;
+    }
 }
 
 //

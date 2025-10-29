@@ -13,7 +13,7 @@ public class UserRepository {
     }
 
     public void createUser(String userName, String email, String userPassword) {
-        jdbcTemplate.update("INSERT INTO usermodel(userName, email, userPassword) VALUES (?, ? , ?) ",
+        jdbcTemplate.update("INSERT INTO user(userName, email, userPassword) VALUES (?, ? , ?) ",
                 userName, email, userPassword);
         System.out.println(userName + email + userPassword);
     }

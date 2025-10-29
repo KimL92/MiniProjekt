@@ -16,9 +16,18 @@ public class WishListRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void createWishList(String wishListName) {
-        jdbcTemplate.update("INSERT INTO wishlistmodel (wishListName) VALUES (?)",
-                wishListName);
+    public void createWishList_user(int wishListID, long userID) {
+        jdbcTemplate.update("INSERT INTO user_wishlist (userID, wishListID) VALUES (?, ?)",
+        userID,wishListID);
 
+    }
+
+    public void createWishList(String wishListName){
+        jdbcTemplate.update("INSERT INTO wishList(wishListName) VALUES (?)",
+        wishListName);
+    }
+
+    public void getIDfromwishList(){
+        jdbcTemplate.update()
     }
 }

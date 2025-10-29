@@ -59,10 +59,11 @@ public class WishItemServiceTest {
         String itemTitle = "mofremmede";
         String itemDescription = "lækker";
         double itemPrice = 88;
+        String itemURL = "ghvfjcbn";
 
-        wishItemService.createWishItem(itemTitle,itemDescription,itemPrice);
+        wishItemService.createWishItem(itemTitle,itemDescription,itemPrice,itemURL);
 
-        verify(wishItemRepository,times(1)).createWishItem(itemTitle,itemDescription,itemPrice);
+        verify(wishItemRepository,times(1)).createWishItem(itemTitle,itemDescription,itemPrice,itemURL);
 
     }
 

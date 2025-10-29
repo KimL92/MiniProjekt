@@ -34,8 +34,8 @@ public class WishItemService {
         wishItemRepository.deleteItemTitle(itemTitle);
     }
 
-    public void createWishItem( String itemTitle ,String itemDescription, double itemPrice){
-        wishItemRepository.createWishItem(itemTitle ,itemDescription, itemPrice);
+    public void createWishItem( String itemTitle ,String itemDescription, double itemPrice, String itemURL){
+        wishItemRepository.createWishItem(itemTitle ,itemDescription, itemPrice, itemURL);
         System.out.println(itemTitle + itemDescription + itemPrice);
     }
 
