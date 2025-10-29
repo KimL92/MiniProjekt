@@ -27,7 +27,8 @@ public class WishListRepository {
         wishListName);
     }
 
-    public void getIDfromwishList(){
-        jdbcTemplate.update()
+    public void getWishListByID(int wishlistID){
+        jdbcTemplate.update("SELECT * from wishlist (wishlistID) VALUES (?)",
+                wishlistID);
     }
 }

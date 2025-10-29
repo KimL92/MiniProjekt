@@ -25,6 +25,7 @@ public class WishListController {
     public WishListController(WishListService wishListService) {
         this.wishListService = wishListService;
     }
+
     //test
     @GetMapping("/createwishlist")
     public String createWishList(Model model) {
@@ -43,10 +44,21 @@ public class WishListController {
 
 
     @PostMapping
-    public String createWishList(@RequestParam long userID, @RequestParam String wishListName){
+    public String createWishList(@RequestParam long userID, @RequestParam String wishListName) {
         int wishListID = 22;
         wishListService.createWishList(wishListName);
-        wishListService.createWishList_user(wishListID,userID);
+        wishListService.createWishList_user(wishListID, userID);
+
+        wishListService.getWishListByID(wishListID);
         return "createItem";
     }
+
+    @GetMapping
+    public String getWishListByID(@RequestParam int wishlistID){
+        int wishlistIDtest= 1;
+        wishListService.getWishListByID(wishlistIDtest);
+        return "getWishListByID";
+    }
+
 }
+

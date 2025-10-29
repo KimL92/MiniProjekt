@@ -18,14 +18,20 @@ public class WishListService {
         this.wishListRepository = wishListRepository;
     }
     public void createWishList_user(int wishListID, long userID) {
-        wishListRepository.createWishList(wishListID,userID);
+        wishListRepository.createWishList_user(wishListID,userID);
         System.out.println(wishListID + userID);
     }
     public void createWishList(String wishListName){
         wishListRepository.createWishList(wishListName);
 
     }
-}
+
+    public void getWishListByID(int wishListID) {
+        wishListRepository.getWishListByID(wishListID);
+
+      }
+
+    }
 
 
 
