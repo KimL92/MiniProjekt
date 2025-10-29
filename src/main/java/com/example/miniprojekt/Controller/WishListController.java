@@ -19,7 +19,7 @@ public class WishListController {
 
     private final WishListService wishListService;
 
-    @Autowired
+
     public WishListController(WishListService wishListService) {
         this.wishListService = wishListService;
     }
