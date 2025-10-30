@@ -7,6 +7,7 @@ public class WishListModel {
     private String wishListItem;
     private String wishListName;
     private String wishItemList;
+    private String wishListDescription;
 
 
     public WishListModel() {
@@ -42,6 +43,14 @@ public class WishListModel {
 
     public void setWishItemList(String wishItemList) {
         this.wishItemList = wishItemList;
+    }
+
+    public String getWishListDescription() {
+        return wishListDescription;
+    }
+
+    public void setWishListDescription(String wishListDescription) {
+        this.wishListDescription = wishListDescription;
     }
 }
 
