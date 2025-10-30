@@ -1,6 +1,7 @@
 package com.example.miniprojekt.Service;
 
 import com.example.miniprojekt.Model.WishItemModel;
+import com.example.miniprojekt.Model.WishListModel;
 import com.example.miniprojekt.Repository.WishListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,11 +27,13 @@ public class WishListService {
 
     }
 
-    public Integer getWishListByID(int wishListID) {
-      return wishListRepository.getWishListByID(wishListID);
+//    public Integer getWishListByID(int wishListID) {
+//      return wishListRepository.getWishListByID(wishListID)
+//      }
 
-      }
-
+    public WishListModel getWishListByID(int id) {
+        return wishListRepository.findByID(id); // smid evt. try/catch eller lav Optional hvis I vil håndtere 'ikke fundet'
+    }
     }
 
 

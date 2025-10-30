@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -24,9 +25,8 @@ public class WishItemRepository {
         }
     }
 
-
     public WishItemModel findWishItemByTitle(String itemTitle) {
-        String sql = "SELECT * FROM wishitem WHERE ?";
+        String sql = "SELECT * FROM wishitem WHERE itemTitle?";
         List<WishItemModel> list = jdbcTemplate.query(sql, (rs, rowNum) -> {
             int itemID = rs.getInt("itemID");
             return new WishItemModel(
