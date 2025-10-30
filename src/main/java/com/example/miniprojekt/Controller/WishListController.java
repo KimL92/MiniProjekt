@@ -32,7 +32,7 @@ public class WishListController {
 
     }
 
- // shababs problemet er her, at vi hardkoder ID'et ind her. Det skal vi ikke. Vi kan ikke vide, hvilket produkt som
+    // shababs problemet er her, at vi hardkoder ID'et ind her. Det skal vi ikke. Vi kan ikke vide, hvilket produkt som
     // brugeren gerne vil ind på. det er ikke altid 22 jo.
     @PostMapping("/createwishlist")
     public String createWishList(@RequestParam long userID, @RequestParam String wishListName) {
@@ -41,7 +41,10 @@ public class WishListController {
         wishListService.createWishList_user(wishListID, userID);
 
         return "wishlist";
+
+
     }
+
 
     @GetMapping("/view")
     public String showAllWishlists(Model model) {
@@ -75,5 +78,14 @@ public class WishListController {
         return "editWishlist"; // lav en thymeleaf-side til at redigere
     }
 
-}
+    }
+
+
+
+
+
+
+
+
+
 
