@@ -28,69 +28,35 @@ public class WishListController {
     @GetMapping("/createwishlist")
     public String createWishList(Model model) {
         model.addAttribute("wishlistitem", new WishItemModel());
-        return "wishlists";
+        return "wishlist";
 
     }
-// test
-//    @GetMapping("/createwishlistt")
-//    public String createWishList() {
-//        int wishListName = "Alan til salg";
-//        wishListService.createWishList(wishListName);
-//
-//        return "createItem";
-//    }
 
  // shababs problemet er her, at vi hardkoder ID'et ind her. Det skal vi ikke. Vi kan ikke vide, hvilket produkt som
     // brugeren gerne vil ind på. det er ikke altid 22 jo.
-    @PostMapping
+    @PostMapping("/createwishlist")
     public String createWishList(@RequestParam long userID, @RequestParam String wishListName) {
         int wishListID = 22;
         wishListService.createWishList(wishListName);
         wishListService.createWishList_user(wishListID, userID);
 
-        wishListService.getWishListByID(wishListID);
-        return "createItem";
+        return "wishlist";
     }
 
-//    @GetMapping("/ID/{wishlistID}")
-//    public String getWishListByID(@PathVariable int wishlistID){
-//        int wishlistIDtest= 6;
-//        wishListService.getWishListByID(wishlistIDtest);
-//        return "getWishListByID";
-//    }
-//
-//    @GetMapping("/ID")
-//    public String getWishListByID(@RequestParam int ID, Model model) {
-//        Integer wishlistFound = wishListService.getWishListByID(ID);
-//        model.addAttribute("wishlistFound", wishlistFound);
-//        return "getWishListByID"; // navnet på HTML-siden
-//    }
-
-    // det her shabas er med requestparam så url skrives som på linje 70
-    // GET /wishlist?id=6
-//    @GetMapping
-//    public String getWishListByID(@RequestParam int id, Model model) {
-//        WishListModel wishlist = wishListService.getWishListByID(id);
-//        model.addAttribute("wishlist", wishlist);
-//        return "wishlistView"; // fx templates/wishlistView.html
-//    }
-
-    // eller så er der her med pathvariable:
-    // GET /wishlist/6
-    @GetMapping("/viewWishlist/{id}")
-    public String getWishListByID(@PathVariable int id, Model model) {
-        WishListModel wishlist = wishListService.getWishListByID(id);
-        model.addAttribute("wishlist", wishlist);
-        return "wishlistView";
+    @GetMapping("/view")
+    public String showAllWishlists(Model model) {
+        List<WishListModel> wishlists = wishListService.getAllWishlists();
+        model.addAttribute("wishlists", wishlists);
+        return "wishlist";
     }
+
 //update og delete mangler
 
     @PostMapping("/delete/{wishListID}")
-    public String deleteWishlist(@PathVariable int wishListID, String wishlistDesciption, String wishlistName) {
-        wishListService.deleteWishlist(wishListID, wishlistDesciption, wishlistName);
+    public String deleteWishlist(@PathVariable int wishListID) {
+        wishListService.deleteWishlist(wishListID);
         return "redirect:/wishlist";
     }
-
 
     @PostMapping("/{wishlistID}/edit")
     public String editWishlist(
@@ -99,7 +65,14 @@ public class WishListController {
             @RequestParam String wishlistName) {
 
         wishListService.updateWishlist(wishlistID, wishlistDescription, wishlistName);
-        return "redirect:/wishlist/";
+        return "redirect:/wishlist";
+    }
+
+    @GetMapping("/{wishlistID}/edit")
+    public String showEditForm(@PathVariable int wishlistID, Model model) {
+        WishListModel wishlist = wishListService.getWishListByID(wishlistID);
+        model.addAttribute("wishlist", wishlist);
+        return "editWishlist"; // lav en thymeleaf-side til at redigere
     }
 
 }

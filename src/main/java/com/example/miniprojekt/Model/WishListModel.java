@@ -4,7 +4,6 @@ import java.util.List;
 
 public class WishListModel {
     private int wishListID;
-    private String wishListItem;
     private String wishListName;
     private String wishItemList;
     private String wishListDescription;
@@ -13,20 +12,18 @@ public class WishListModel {
     public WishListModel() {
     }
 
+    public WishListModel(int wishListID, String wishListName, String wishListDescription) {
+        this.wishListID = wishListID;
+        this.wishListName = wishListName;
+        this.wishListDescription = wishListDescription;
+    }
+
     public int getWishListID() {
         return wishListID;
     }
 
     public void setWishListID(int wishListID) {
         this.wishListID = wishListID;
-    }
-
-    public String getWishListItem() {
-        return wishListItem;
-    }
-
-    public void setWishListItem(String wishListItem) {
-        this.wishListItem = wishListItem;
     }
 
     public String getWishListName() {

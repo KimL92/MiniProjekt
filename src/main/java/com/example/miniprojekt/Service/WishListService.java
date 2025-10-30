@@ -12,10 +12,8 @@ import java.util.List;
 @Service
 public class WishListService {
 
-
     private final WishListRepository wishListRepository;
     private final WishItemService wishItemService;
-
 
     public WishListService(WishListRepository wishListRepository, WishItemService wishItemService) {
         this.wishListRepository = wishListRepository;
@@ -30,39 +28,19 @@ public class WishListService {
 
     }
 
-//    public Integer getWishListByID(int wishListID) {
-//      return wishListRepository.getWishListByID(wishListID)
-//      }
-
     public WishListModel getWishListByID(int id) {
-        return wishListRepository.findWishListByWishListID(id); // smid evt. try/catch eller lav Optional hvis I vil håndtere 'ikke fundet'
+        return wishListRepository.findWishListByWishListID(id);
     }
 
-//    public void deleteWishlist(String wishlistName) {
-//         wishListRepository.deleteWishlist(wishlistName);
-//
-//    }
+    public List<WishListModel> getAllWishlists() {
+        return wishListRepository.getAllWishlists();
+    }
 
-    public void deleteWishlist(int wishListID, String wishlistDescription, String wishlistName){
-        wishListRepository.deleteWishlist(wishListID,wishlistDescription, wishlistName);
+    public void deleteWishlist(int wishListID){
+        wishListRepository.deleteWishlist(wishListID);
     }
 
     public void updateWishlist(int wishlistID, String wishlistDescription, String wishlistName){
         wishListRepository.updateWishlist(wishlistID, wishlistDescription, wishlistName);
-
     }
-
-
-
-
 }
-
-
-
-
-
-//    public void deleteItemTitle(String itemTitle) {
-//        WishItemRepository.deleteItemTitle(itemTitle);
-//    }
-//
-//}

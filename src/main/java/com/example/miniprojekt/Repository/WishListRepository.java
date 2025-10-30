@@ -28,14 +28,6 @@ public class WishListRepository {
         wishListName);
     }
 
-    // lad denne blive, den giver ikke mening.
-//    public Integer getWishListByID(int wishlistID){
-//       return jdbcTemplate.queryForObject("SELECT wishlistID FROM wishlist WHERE wishlistID = ?",
-//                Integer.class,
-//               wishlistID
-//                       );
-//    }
-
     // sindssyg metode shabab
     public WishListModel findWishListByWishListID(int wishListId) {
         String sql = "SELECT wishListId, wishListName, description FROM wishlist WHERE wishListId = ?";
@@ -46,17 +38,22 @@ public class WishListRepository {
             m.setWishListDescription(rs.getString("description")); // burde ændre navnet her til wishlistdescription
             return m;
         }, wishListId);
-
-
     }
 
-//    public void deleteWishlist(String wishListName) {
-//        jdbcTemplate.update("DELETE FROM wishlist WHERE wishListName = ?", wishListName);
-//    }
+    // Henter alle ønskelister
+    public List<WishListModel> getAllWishlists() {
+        String sql = "SELECT * FROM wishlist";
 
-    public void deleteWishlist(int wishListID, String wishlistDescription, String wishlistName) {
-        jdbcTemplate.update("DELETE FROM wishlist WHERE (wishListId, wishlistDescription, wishlistName) = ?, ?, ?",
-                wishListID, wishlistDescription, wishlistName);
+        return jdbcTemplate.query(sql, (rs, rowNum) -> new WishListModel(
+                rs.getInt("wishListId"),
+                rs.getString("wishListName"),
+                rs.getString("description")
+        ));
+    }
+
+    public void deleteWishlist(int wishListID) {
+        String sql = "DELETE FROM wishlist WHERE wishListId = ?";
+        jdbcTemplate.update(sql, wishListID);
     }
 
     public void updateWishlist(int wishlistID, String wishlistDescription, String wishlistName) {
