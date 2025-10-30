@@ -32,7 +32,7 @@ public class WishListService {
 //      }
 
     public WishListModel getWishListByID(int id) {
-        return wishListRepository.findByID(id); // smid evt. try/catch eller lav Optional hvis I vil håndtere 'ikke fundet'
+        return wishListRepository.findWishListByWishListID(id); // smid evt. try/catch eller lav Optional hvis I vil håndtere 'ikke fundet'
     }
     }
 

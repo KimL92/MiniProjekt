@@ -28,6 +28,7 @@ public class WishListRepository {
         wishListName);
     }
 
+    // lad denne blive, den giver ikke mening.
 //    public Integer getWishListByID(int wishlistID){
 //       return jdbcTemplate.queryForObject("SELECT wishlistID FROM wishlist WHERE wishlistID = ?",
 //                Integer.class,
@@ -35,7 +36,8 @@ public class WishListRepository {
 //                       );
 //    }
 
-    public WishListModel findByID(int wishListId) {
+    // sindssyg metode shabab
+    public WishListModel findWishListByWishListID(int wishListId) {
         String sql = "SELECT wishListId, wishListName, description FROM wishlist WHERE wishListId = ?";
         return jdbcTemplate.queryForObject(sql, (rs, rn) -> {
             WishListModel m = new WishListModel();
