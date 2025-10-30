@@ -47,6 +47,25 @@ public class WishListRepository {
             return m;
         }, wishListId);
 
+
+    }
+
+//    public void deleteWishlist(String wishListName) {
+//        jdbcTemplate.update("DELETE FROM wishlist WHERE wishListName = ?", wishListName);
+//    }
+
+    public void deleteWishlist(int wishListID, String wishlistDescription, String wishlistName) {
+        jdbcTemplate.update("DELETE FROM wishlist WHERE (wishListId, wishlistDescription, wishlistName) = ?, ?, ?",
+                wishListID, wishlistDescription, wishlistName);
+    }
+
+    public void updateWishlist(int wishlistID, String wishlistDescription, String wishlistName) {
+        jdbcTemplate.update(
+                "UPDATE wishlist SET wishlistName = ?, description = ? WHERE wishListId = ?",
+                wishlistName, wishlistDescription, wishlistID
+        );
     }
 
 }
+
+

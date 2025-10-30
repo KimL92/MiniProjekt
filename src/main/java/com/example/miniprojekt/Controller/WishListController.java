@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Controller
-@RequestMapping("/wishitem")
+@RequestMapping("/wishlist")
 
 public class WishListController {
 
@@ -82,6 +82,24 @@ public class WishListController {
         WishListModel wishlist = wishListService.getWishListByID(id);
         model.addAttribute("wishlist", wishlist);
         return "wishlistView";
+    }
+//update og delete mangler
+
+    @PostMapping("/delete/{wishListID}")
+    public String deleteWishlist(@PathVariable int wishListID, String wishlistDesciption, String wishlistName) {
+        wishListService.deleteWishlist(wishListID, wishlistDesciption, wishlistName);
+        return "redirect:/wishlist";
+    }
+
+
+    @PostMapping("/{wishlistID}/edit")
+    public String editWishlist(
+            @PathVariable int wishlistID,
+            @RequestParam String wishlistDescription,
+            @RequestParam String wishlistName) {
+
+        wishListService.updateWishlist(wishlistID, wishlistDescription, wishlistName);
+        return "redirect:/wishlist/";
     }
 
 }
