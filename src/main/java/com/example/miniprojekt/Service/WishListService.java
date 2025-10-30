@@ -26,11 +26,13 @@ public class WishListService {
 
     }
 
-    public Integer getWishListByID(int wishListID) {
-      return wishListRepository.getWishListByID(wishListID);
+    public void getIDfromwishList(long userID) {
+        wishListRepository.getIDfromwishList(userID);
 
-      }
-
+    }
+    public void getIDfromwishlist_user(long userID){
+        wishListRepository.getIDfromwishList_user(userID);
+    }
     }
 
 

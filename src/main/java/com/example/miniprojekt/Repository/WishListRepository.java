@@ -28,10 +28,11 @@ public class WishListRepository {
         wishListName);
     }
 
-    public Integer getWishListByID(int wishlistID){
-       return jdbcTemplate.queryForObject("SELECT wishlistID FROM wishlist WHERE wishlistID = ?",
+    public void getWishListByID(WishListModel wishListModel){
+       Integer wishlistID =  jdbcTemplate.queryForObject("SELECT wishlistID FROM wishlist WHERE wishlistID=?",
                 Integer.class,
-               wishlistID
-                       );
+               wishListModel.getWishListID());
+       wishListModel.setWishListID(wishlistID);
     }
+
 }
