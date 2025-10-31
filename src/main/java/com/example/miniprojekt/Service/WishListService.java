@@ -43,4 +43,6 @@ public class WishListService {
     public void updateWishlist(int wishlistID, String wishlistDescription, String wishlistName){
         wishListRepository.updateWishlist(wishlistID, wishlistDescription, wishlistName);
     }
+
+    }
 }
