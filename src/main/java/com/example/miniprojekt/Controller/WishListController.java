@@ -31,6 +31,8 @@ public class WishListController {
         return "redirect:/wishlist";
     }
 
+
+
     // slet når hjemmeside færdig
     @PostConstruct
     public void testController() {
