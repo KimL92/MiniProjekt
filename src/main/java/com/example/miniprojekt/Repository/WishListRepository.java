@@ -28,22 +28,17 @@ public class WishListRepository {
         wishListName);
     }
 
-    // sindssyg metode shabab
     public WishListModel findWishListByWishListID(int wishListId) {
         String sql = "SELECT wishListId, wishListName, description FROM wishlist WHERE wishListId = ?";
-        return jdbcTemplate.queryForObject(sql, (rs, rn) -> {
-            WishListModel m = new WishListModel();
-            m.setWishListID(rs.getInt("wishListId"));
-            m.setWishListName(rs.getString("wishListName"));
-            m.setWishListDescription(rs.getString("description")); // burde ændre navnet her til wishlistdescription
-            return m;
-        }, wishListId);
+        return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> new WishListModel(
+                rs.getInt("wishListId"),
+                rs.getString("wishListName"),
+                rs.getString("description")
+        ), wishListId);
     }
 
-    // Henter alle ønskelister
     public List<WishListModel> getAllWishlists() {
         String sql = "SELECT * FROM wishlist";
-
         return jdbcTemplate.query(sql, (rs, rowNum) -> new WishListModel(
                 rs.getInt("wishListId"),
                 rs.getString("wishListName"),
@@ -51,9 +46,9 @@ public class WishListRepository {
         ));
     }
 
+
     public void deleteWishlist(int wishListID) {
-        String sql = "DELETE FROM wishlist WHERE wishListId = ?";
-        jdbcTemplate.update(sql, wishListID);
+        jdbcTemplate.update("DELETE FROM wishlist WHERE wishListId = ?", wishListID);
     }
 
     public void updateWishlist(int wishlistID, String wishlistDescription, String wishlistName) {
@@ -64,5 +59,9 @@ public class WishListRepository {
     }
 
 }
+
+
+
+
 
 
