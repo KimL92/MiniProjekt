@@ -18,14 +18,14 @@ public class WishListRepository {
     }
 
     public void createWishList_user(int wishListID, long userID) {
-        jdbcTemplate.update("INSERT INTO user_wishlist (userID, wishListID) VALUES (?, ?)",
+        jdbcTemplate.update("INSERT INTO user_wishlist (wishListID, userID) VALUES (?, ?)",
         userID,wishListID);
 
     }
 
-    public void createWishList(String wishListName){
-        jdbcTemplate.update("INSERT INTO wishList(wishListName) VALUES (?)",
-        wishListName);
+    public void createWishList(String wishListName, String wishListDescription){
+        jdbcTemplate.update("INSERT INTO wishlist (wishListName, description) VALUES (?, ?)",
+        wishListName, wishListDescription);
     }
 
     public WishListModel findWishListByWishListID(int wishListId) {
@@ -51,6 +51,7 @@ public class WishListRepository {
         jdbcTemplate.update("DELETE FROM wishlist WHERE wishListId = ?", wishListID);
     }
 
+
     public void updateWishlist(int wishlistID, String wishlistDescription, String wishlistName) {
         jdbcTemplate.update(
                 "UPDATE wishlist SET wishlistName = ?, description = ? WHERE wishListId = ?",
@@ -58,6 +59,36 @@ public class WishListRepository {
         );
     }
 
+    public void saveWishList(WishListModel wishListModel) {
+        WishItemModel existing = findWishItemByTitle(wishListModel.getWishListName());
+        if (existing != null) {
+            jdbcTemplate.update("INSERT INTO wishlist(wishListName, wishListDescription) VALUES (?, ?)",
+                    wishListModel.getWishListName(), wishListModel.getWishListDescription());
+
+            Integer itemID = jdbcTemplate.queryForObject("SELECT itemID From WishItemModel WHERE itemID=? ",
+                    Integer.class, wishItemModel.getItemTitle());
+
+            wishItemModel.setItemID(itemID);
+            return wishItemModel;
+
+        }else {
+            // bois herned under opretter den et nyt item
+            jdbcTemplate.update("INSERT INTO wishitem(itemTitle, itemDescription ,itemPrice,itemURL) VALUES (?, ?, ?, ?)",
+                    wishItemModel.getItemTitle(), wishItemModel.getItemDescription(),wishItemModel.getItemPrice(),wishItemModel.getItemURL()
+            );
+
+
+            // drenge hernede henter vi det nye itemID
+            Integer itemID = jdbcTemplate.queryForObject("SELECT itemID FROM wishitem WHERE itemTitle=?",
+                    Integer.class,
+                    wishItemModel.getItemTitle()
+            );
+
+            wishItemModel.setItemID(itemID);
+            return wishItemModel;
+
+        }
+    }
 }
 
 

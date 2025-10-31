@@ -24,10 +24,11 @@ public class WishListServiceTest {
     @Test
     void createWishList(){
         String wishListName = "allans 18 års";
+        String wishListDescription = "kk";
 
-        wishListService.createWishList(wishListName);
+        wishListService.createWishList(wishListName, wishListDescription);
 
-        verify(wishListRepository,times(1)).createWishList(wishListName);
+        verify(wishListRepository,times(1)).createWishList(wishListName, wishListDescription);
     }
 
 

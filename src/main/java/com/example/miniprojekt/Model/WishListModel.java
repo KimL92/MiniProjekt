@@ -12,6 +12,11 @@ public class WishListModel {
     public WishListModel() {
     }
 
+    public WishListModel(String wishListName, String wishListDescription) {
+        this.wishListName = wishListName;
+        this.wishListDescription = wishListDescription;
+    }
+
     public WishListModel(int wishListID, String wishListName, String wishListDescription) {
         this.wishListID = wishListID;
         this.wishListName = wishListName;

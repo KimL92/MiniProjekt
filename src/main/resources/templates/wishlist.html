@@ -6,7 +6,6 @@
     <link th:href="@{/main.css}" rel="stylesheet">
 </head>
 <body>
-<h1>Ønskeliste</h1>
 
 <table><!DOCTYPE html>
     <html xmlns:th="http://www.thymeleaf.org" lang="DA">
@@ -19,11 +18,11 @@
     <h1>Ønskeliste</h1>
 
     <table>
-        <tr th:if="${wishlists.isEmpty()}">
+        <tr th:if="${wishlists == null or #lists.isEmpty(wishlists)}">
             <td colspan="3">Der er ingen ønskelister endnu</td>
         </tr>
 
-        <tr th:if="${!wishlists.isEmpty()}">
+        <tr th:if="${wishlists != null and !#lists.isEmpty(wishlists)}">
             <th>Navn</th>
             <th>Beskrivelse</th>
             <th>Handling</th>
@@ -42,13 +41,12 @@
 
     </table>
 
-    <a th:href="@{/wishlist/add}"><button>Opret ny ønskeliste</button></a>
+    <a th:href="@{/wishlist/createwishlist}"><button>Opret ny ønskeliste</button></a>
+
 
     </body>
     </html>
 </table>
-
-<a th:href="@{/wishlist/add}"><button>Opret ny ønskeliste</button></a>
 
 </body>
 </html>

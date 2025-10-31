@@ -13,19 +13,18 @@ import java.util.List;
 public class WishListService {
 
     private final WishListRepository wishListRepository;
-    private final WishItemService wishItemService;
 
-    public WishListService(WishListRepository wishListRepository, WishItemService wishItemService) {
+    public WishListService(WishListRepository wishListRepository) {
         this.wishListRepository = wishListRepository;
-        this.wishItemService = wishItemService;
     }
+
     public void createWishList_user(int wishListID, long userID) {
         wishListRepository.createWishList_user(wishListID,userID);
         System.out.println(wishListID + userID);
     }
-    public void createWishList(String wishListName){
-        wishListRepository.createWishList(wishListName);
 
+    public void createWishList(String wishListName, String wishListDescription){
+        wishListRepository.createWishList(wishListName, wishListDescription);
     }
 
     public WishListModel getWishListByID(int id) {
@@ -44,5 +43,8 @@ public class WishListService {
         wishListRepository.updateWishlist(wishlistID, wishlistDescription, wishlistName);
     }
 
+    public void saveWishList(WishListModel wishListModel) {
+        wishListRepository.saveWishList(wishListModel);
     }
+}
 

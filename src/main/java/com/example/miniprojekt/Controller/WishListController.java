@@ -24,7 +24,6 @@ public class WishListController {
         this.wishListService = wishListService;
     }
 
-
     @GetMapping()
     public String showAllWishlists(Model model) {
         List<WishListModel> wishlists = wishListService.getAllWishlists();
@@ -32,27 +31,32 @@ public class WishListController {
         return "wishlist";
     }
 
-    //test
+//    @GetMapping("/createwishlist")
+//    public String createWishList(Model model) {
+//        model.addAttribute("wishlist", new WishListModel( "", ""));
+//        return "wishlist";
+//    }
+
+    // VIS OPRET-FORM: GET /wishlist/create
     @GetMapping("/createwishlist")
-    public String createWishList(Model model) {
-        model.addAttribute("wishlistitem", new WishItemModel());
-        return "wishlist";
-
+    public String showCreateForm(Model model) {
+        model.addAttribute("wishlist", new WishListModel()); // model til formular
+        return "createwishlist";
     }
 
-
-
- // shababs problemet er her, at vi hardkoder ID'et ind her. Det skal vi ikke. Vi kan ikke vide, hvilket produkt som
-    // brugeren gerne vil ind på. det er ikke altid 22 jo.
+    // GEM NY: POST /wishlist/create
     @PostMapping("/createwishlist")
-    public String createWishList(@RequestParam long userID, @RequestParam String wishListName) {
-        int wishListID = 22;
-        wishListService.createWishList(wishListName);
-        wishListService.createWishList_user(wishListID, userID);
-
-        return "wishlist";
+    public String createWishList(@RequestParam String wishListName,
+                                 @RequestParam String wishListDescription) {
+        wishListService.createWishList(wishListName, wishListDescription);
+        return "redirect:/wishlist"; // tilbage til listen
     }
 
+    @PostMapping("/savewishlist")
+    public String saveWishItem(@ModelAttribute WishListModel wishListModel) {
+        wishListService.saveWishList(wishListModel);
+        return "redirect:/wishlist";
+    }
 
     @PostMapping("/delete/{id}")
     public String deleteWishlist(@PathVariable int id) {
@@ -60,17 +64,17 @@ public class WishListController {
         return "redirect:/wishlist";
     }
 
+//    @PostMapping("/{wishlistID}/edit")
+//    public String editWishlist(
+//            @PathVariable int wishlistID,
+//            @RequestParam String wishlistDescription,
+//            @RequestParam String wishlistName) {
+//
+//        wishListService.updateWishlist(wishlistID, wishlistDescription, wishlistName);
+//        return "redirect:/wishlist";
+//    }
+
     @PostMapping("/{wishlistID}/edit")
-    public String editWishlist(
-            @PathVariable int wishlistID,
-            @RequestParam String wishlistDescription,
-            @RequestParam String wishlistName) {
-
-        wishListService.updateWishlist(wishlistID, wishlistDescription, wishlistName);
-        return "redirect:/wishlist";
-    }
-
-    @GetMapping("/{wishlistID}/edit")
     public String showEditForm(@PathVariable int wishlistID, Model model) {
         WishListModel wishlist = wishListService.getWishListByID(wishlistID);
         model.addAttribute("wishlist", wishlist);
