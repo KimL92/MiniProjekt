@@ -24,6 +24,14 @@ public class WishListController {
         this.wishListService = wishListService;
     }
 
+
+    @GetMapping()
+    public String showAllWishlists(Model model) {
+        List<WishListModel> wishlists = wishListService.getAllWishlists();
+        model.addAttribute("wishlists", wishlists);
+        return "wishlist";
+    }
+
     //test
     @GetMapping("/createwishlist")
     public String createWishList(Model model) {
@@ -45,12 +53,6 @@ public class WishListController {
         return "wishlist";
     }
 
-    @GetMapping()
-    public String showAllWishlists(Model model) {
-        List<WishListModel> wishlists = wishListService.getAllWishlists();
-        model.addAttribute("wishlists", wishlists);
-        return "wishlist";
-    }
 
     @PostMapping("/delete/{id}")
     public String deleteWishlist(@PathVariable int id) {
