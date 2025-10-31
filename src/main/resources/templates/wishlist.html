@@ -20,8 +20,8 @@
     </tr>
 
     <tr th:each="wishlist : ${wishlists}">
-        <td th:text="${wishlist.wishlistName}"></td>
-        <td th:text="${wishlist.description}"></td>
+        <td th:text="${wishlist.wishListName}"></td>
+        <td th:text="${wishlist.wishListDescription}"></td>
         <td>
             <a th:href="@{/wishlist/{id}/edit(id=${wishlist.wishListId})}">Opdater</a>
 
