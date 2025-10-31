@@ -1,6 +1,6 @@
 package com.example.miniprojekt.Controller;
 
-import com.example.miniprojekt.Service.WishListService;
+import com.example.miniprojekt.Service.WishlistService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -12,18 +12,18 @@ import static org.mockito.Mockito.times;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(WishListController.class)
-public class WishListControllerTest {
+@WebMvcTest(WishlistController.class)
+public class WishlistControllerTest {
 
     @MockitoBean
-    private WishListService wishListService;
+    private WishlistService wishlistService;
 
     @Autowired
     private MockMvc mockMvc;
 
     // Test af /createwishlist (uden verify, da service ikke kaldes)
     @Test
-    void testCreateWishListViewLoads() throws Exception {
+    void testCreateWishlistViewLoads() throws Exception {
         mockMvc.perform(get("/wishitem/createwishlist"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("wishlists"))
@@ -32,12 +32,12 @@ public class WishListControllerTest {
 
     // Test af /createwishlistt (med verify, fordi service kaldes)
     @Test
-    void testCreateWishListtCallsService() throws Exception {
+    void testCreateWishlistCallsService() throws Exception {
         mockMvc.perform(get("/wishitem/createwishlistt"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("createItem"));
 
         // verify at servicen blev kaldt med det forventede navn
-        verify(wishListService, times(1)).createWishList("Alan til salg", "Hej");
+        verify(wishlistService, times(1)).createWishlist("Alan til salg", "Hej");
     }
 }

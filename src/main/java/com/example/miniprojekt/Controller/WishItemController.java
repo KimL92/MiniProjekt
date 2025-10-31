@@ -2,23 +2,20 @@ package com.example.miniprojekt.Controller;
 
 import com.example.miniprojekt.Model.WishItemModel;
 import com.example.miniprojekt.Service.WishItemService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @RequestMapping("/wishitem")
 public class WishItemController {
 
-
     private final WishItemService wishItemService;
-    private final WishListController wishListController;
+    private final WishlistController wishListController;
 
-    public WishItemController(WishItemService wishItemService, WishListController wishListController) {
+    public WishItemController(WishItemService wishItemService, WishlistController wishListController) {
         this.wishItemService = wishItemService;
         this.wishListController = wishListController;
     }
@@ -34,8 +31,6 @@ public class WishItemController {
         return "wishlistItems";
     }
 
-
-
     @PostMapping("/createitem")
     public String createWishItem(@RequestParam String itemTitle,
                                  @RequestParam String itemDescription,
@@ -46,20 +41,19 @@ public class WishItemController {
         return "redirect:/wishitem/list/" + wishlistId;
     }
 
-
     @PostMapping("/save")
     public String saveWishItem(@ModelAttribute WishItemModel wishItem) {
         wishItemService.saveWishItem(wishItem);
         return "redirect:/WishItem";
     }
 
-    @GetMapping("/all")
-    public String showAllItems(Model model) {
-        List<WishItemModel> items = wishItemService.getAllItems();
-        model.addAttribute("items", items);
-
-        return "viewItems"; // vi skal lave en html til det
-    }
+//    @GetMapping("/all")
+//    public String showAllItems(Model model) {
+//        List<WishItemModel> items = wishItemService.getAllItems();
+//        model.addAttribute("items", items);
+//
+//        return "viewItems"; // vi skal lave en html til det
+//    }
 
     @PostMapping("/delete/{itemTitle}")
     public String deleteItemTitle(@PathVariable String itemTitle) {
@@ -67,18 +61,17 @@ public class WishItemController {
         return "redirect:/WishItem/all";
     }
 
-
     @PostMapping("/{name}/update")
     public String updateItem(@PathVariable String itemTitle, @ModelAttribute WishItemModel wishItem) {
         wishItemService.saveWishItem(wishItem);
-        return "redirect:/attractions/all";
+        return "redirect:/wishlist";
     }
 
     @GetMapping("/{name}/edit")
     public String showEditWishItem(@PathVariable String name, Model model) {
         WishItemModel item = wishItemService.findWishItemByTitle(name);
         if (item == null) {
-            return "redirect:/WishItem/all";
+            return "redirect:/wishlist";
         }
         model.addAttribute("wishItem", item);
         return "editItem";

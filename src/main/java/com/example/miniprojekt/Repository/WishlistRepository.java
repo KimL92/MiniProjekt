@@ -1,76 +1,67 @@
 package com.example.miniprojekt.Repository;
 
-import com.example.miniprojekt.Model.WishItemModel;
-import com.example.miniprojekt.Model.WishListModel;
+import com.example.miniprojekt.Model.WishlistModel;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class WishListRepository {
+public class WishlistRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-
-    public WishListRepository(JdbcTemplate jdbcTemplate) {
+    public WishlistRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void createWishList_user(int wishListID, long userID) {
-        jdbcTemplate.update("INSERT INTO user_wishlist (wishListID, userID) VALUES (?, ?)",
-        userID,wishListID);
-
+    public void createWishlist_user(int wishlistID, long userID) {
+        jdbcTemplate.update("INSERT INTO user_wishlist (wishlist_id, user_id) VALUES (?, ?)",
+        userID,wishlistID);
     }
 
-    public void createWishList(String wishListName, String wishListDescription){
-        jdbcTemplate.update("INSERT INTO wishlist (wishListName, description) VALUES (?, ?)",
-        wishListName, wishListDescription);
+    public void createWishlist(String wishlistName, String wishlistDescription){
+        jdbcTemplate.update("INSERT INTO wishlist (wishlist_name, wishlist_description) VALUES (?, ?)",
+        wishlistName, wishlistDescription);
     }
 
-    public WishListModel findWishListByWishListID(int wishListId) {
-        String sql = "SELECT wishListId, wishListName, description FROM wishlist WHERE wishListId = ?";
-        return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> new WishListModel(
-                rs.getInt("wishListId"),
-                rs.getString("wishListName"),
-                rs.getString("description")
-        ), wishListId);
+    public WishlistModel findWishlistByWishlistID(int wishlistId) {
+        String sql = "SELECT wishlist_id, wishlist_name, wishlist_description FROM wishlist WHERE wishlist_id = ?";
+        return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> new WishlistModel(
+                rs.getInt("wishlist_id"),
+                rs.getString("wishlist_name"),
+                rs.getString("wishlist_description")
+        ), wishlistId);
     }
 
-    public List<WishListModel> getAllWishlists() {
+    public List<WishlistModel> getAllWishlists() {
         String sql = "SELECT * FROM wishlist";
-        return jdbcTemplate.query(sql, (rs, rowNum) -> new WishListModel(
-                rs.getInt("wishListId"),
-                rs.getString("wishListName"),
-                rs.getString("description")
+        return jdbcTemplate.query(sql, (rs, rowNum) -> new WishlistModel(
+                rs.getInt("wishlist_id"),
+                rs.getString("wishlist_name"),
+                rs.getString("wishlist_description")
         ));
     }
 
-
-    public void deleteWishlist(int wishListID) {
-        jdbcTemplate.update("DELETE FROM wishlist WHERE wishListId = ?", wishListID);
+    public void deleteWishlist(int wishlistID) {
+        jdbcTemplate.update("DELETE FROM wishlist WHERE wishlist_id = ?", wishlistID);
     }
-
 
     public void updateWishlist(int wishlistID, String wishlistDescription, String wishlistName) {
         jdbcTemplate.update(
-                "UPDATE wishlist SET wishlistName = ?, description = ? WHERE wishListId = ?",
+                "UPDATE wishlist SET wishlist_name = ?, wishlist_description = ? WHERE wishlist_id = ?",
                 wishlistName, wishlistDescription, wishlistID
         );
     }
 
-    public void saveWishList(WishListModel wishListModel) {
-        String sql = "INSERT INTO wishlist (wishListName, description) VALUES (?, ?)";
+    public void saveWishlist(WishlistModel wishlistModel) {
+        String sql = "INSERT INTO wishlist (wishlist_name, wishlist_description) VALUES (?, ?)";
 
         jdbcTemplate.update(sql,
-                wishListModel.getWishListName(),
-                wishListModel.getWishListDescription()
+                wishlistModel.getWishlistName(),
+                wishlistModel.getWishlistDescription()
         );
     }
-
-
-
-
 
 //
 //    public void saveWishList(WishListModel wishListModel) {
