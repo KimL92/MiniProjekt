@@ -1,52 +1,37 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="da">
 <head>
     <meta charset="UTF-8">
     <title>Ønskeskyen</title>
     <link th:href="@{/main.css}" rel="stylesheet">
 </head>
 <body>
+<h1>Ønskelister</h1>
 
-<table><!DOCTYPE html>
-    <html xmlns:th="http://www.thymeleaf.org" lang="DA">
-    <head>
-        <meta charset="UTF-8">
-        <title>Ønskeskyen</title>
-        <link th:href="@{/main.css}" rel="stylesheet">
-    </head>
-    <body>
-    <h1>Ønskeliste</h1>
+<table>
+    <tr th:if="${wishlists == null or #lists.isEmpty(wishlists)}">
+        <td colspan="3">Der er ingen ønskelister endnu</td>
+    </tr>
 
-    <table>
-        <tr th:if="${wishlists == null or #lists.isEmpty(wishlists)}">
-            <td colspan="3">Der er ingen ønskelister endnu</td>
-        </tr>
+    <tr th:if="${wishlists != null and !#lists.isEmpty(wishlists)}">
+        <th>Navn</th>
+        <th>Beskrivelse</th>
+        <th>Handling</th>
+    </tr>
 
-        <tr th:if="${wishlists != null and !#lists.isEmpty(wishlists)}">
-            <th>Navn</th>
-            <th>Beskrivelse</th>
-            <th>Handling</th>
-        </tr>
-
-        <tr th:each="wishlist : ${wishlists}">
-            <td th:text="${wishlist.wishListName}"></td>
-            <td th:text="${wishlist.wishListDescription}"></td>
-            <td>
-                <a th:href="@{/wishlist/{id}/edit(id=${wishlist.wishListID})}">Opdater</a>
-                <form th:action="@{/wishlist/delete/{id}(id=${wishlist.wishListID})}" method="post" style="display:inline">
-                    <button type="submit">Slet</button>
-                </form>
-            </td>
-        </tr>
-
-    </table>
-
-    <a th:href="@{/wishlist/createwishlist}"><button>Opret ny ønskeliste</button></a>
-
-
-    </body>
-    </html>
+    <tr th:each="wishlist : ${wishlists}">
+        <td th:text="${wishlist.wishListName}"></td>
+        <td th:text="${wishlist.wishListDescription}"></td>
+        <td>
+            <a th:href="@{/wishitem/list/{id}(id=${wishlist.wishListID})}">Se liste</a>
+            <form th:action="@{/wishlist/delete/{id}(id=${wishlist.wishListID})}" method="post" style="display:inline">
+                <button type="submit">Slet</button>
+            </form>
+        </td>
+    </tr>
 </table>
+
+<a th:href="@{/wishlist/createwishlist}"><button>Opret ny ønskeliste</button></a>
 
 </body>
 </html>

@@ -4,6 +4,7 @@ import com.example.miniprojekt.Controller.WishItemController;
 import com.example.miniprojekt.Model.WishItemModel;
 import com.example.miniprojekt.Repository.WishItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,4 +45,17 @@ public class WishItemService {
     }
 
 
-}
+    public void createWishList(double itemPrice, String itemDescription, String itemURL, String itemTitle) {
+        wishItemRepository.createWishItem(itemTitle,itemDescription,itemPrice,itemURL);
+    }
+
+    public List<WishItemModel> getItemsByWishlistId(int wishlistId) {
+        return wishItemRepository.getItemsByWishlistId(wishlistId);
+    }
+
+
+    public void createWishItemForWishlist(int wishlistId, String itemTitle, String itemDescription, double itemPrice, String itemURL) {
+        wishItemRepository.createWishItemForWishlist(wishlistId, itemTitle, itemDescription, itemPrice, itemURL);
+    }
+    }
+

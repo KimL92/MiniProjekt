@@ -26,7 +26,8 @@ public class WishItemRepository {
     }
 
     public WishItemModel findWishItemByTitle(String itemTitle) {
-        String sql = "SELECT * FROM wishitem WHERE itemTitle?";
+        String sql = "SELECT * FROM wishitem WHERE itemTitle = ?";
+
         List<WishItemModel> list = jdbcTemplate.query(sql, (rs, rowNum) -> {
             int itemID = rs.getInt("itemID");
             return new WishItemModel(
@@ -48,13 +49,19 @@ public class WishItemRepository {
 
     }
 
+
     public WishItemModel saveWishItem(WishItemModel wishItemModel) {
         WishItemModel existing = findWishItemByTitle(wishItemModel.getItemTitle());
         if (existing != null) {
-            jdbcTemplate.update("UPDATE itemTitle SET itemDescription=?,itemPrice=? WHERE itemTitle=?",
-                    wishItemModel.getItemDescription(), wishItemModel.getItemPrice(), wishItemModel.getItemTitle());
+            jdbcTemplate.update(
+                    "UPDATE wishitem SET itemDescription=?, itemPrice=?, itemURL=? WHERE itemTitle=?",
+                    wishItemModel.getItemDescription(),
+                    wishItemModel.getItemPrice(),
+                    wishItemModel.getItemURL(),
+                    wishItemModel.getItemTitle()
+            );
 
-            Integer itemID = jdbcTemplate.queryForObject("SELECT itemID From WishItemModel WHERE itemID=? ",
+            Integer itemID = jdbcTemplate.queryForObject("SELECT itemID From wishItem WHERE itemID=? ",
                     Integer.class, wishItemModel.getItemTitle());
 
             wishItemModel.setItemID(itemID);
@@ -83,5 +90,16 @@ public class WishItemRepository {
     String sql = "SELECT * FROM wishItem";
     return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(WishItemModel.class));
     }
+
+    public List<WishItemModel> getItemsByWishlistId(int wishlistId) {
+        String sql = "SELECT * FROM wishitem WHERE wishlistID = ?";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(WishItemModel.class), wishlistId);
+    }
+
+    public void createWishItemForWishlist(int wishlistId, String title, String description, double price, String url) {
+        String sql = "INSERT INTO wishitem (wishlistID, itemTitle, itemDescription, itemPrice, itemURL) VALUES (?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, wishlistId, title, description, price, url);
+    }
+
 }
 

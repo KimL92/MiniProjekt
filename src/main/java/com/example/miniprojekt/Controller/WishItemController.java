@@ -16,30 +16,36 @@ public class WishItemController {
 
 
     private final WishItemService wishItemService;
+    private final WishListController wishListController;
 
-    public WishItemController(WishItemService wishItemService) {
+    public WishItemController(WishItemService wishItemService, WishListController wishListController) {
         this.wishItemService = wishItemService;
+        this.wishListController = wishListController;
     }
 
-    // test for at se om det virkede.
-    @GetMapping("/create")
-    public String createWishItem() {
-        String itemTitle = "hej";
-        String itemDescription = "fedt";
-        double itemPrice = 899;
-        String itemURL = "hhtvje";
-        wishItemService.createWishItem(itemTitle, itemDescription, itemPrice,itemURL);
+    @GetMapping("/list/{wishlistId}")
+    public String showItemsForWishlist(@PathVariable int wishlistId, Model model) {
+        // Hent alle items der hører til denne ønskeliste
+        List<WishItemModel> items = wishItemService.getItemsByWishlistId(wishlistId);
 
-        return "createItem";
+        model.addAttribute("items", items);
+        model.addAttribute("wishlistId", wishlistId);
+
+        return "wishlistItems";
     }
 
-    // rigtige metode
-    @GetMapping("/createitem")
-    public String createWishItem(Model model) {
-        model.addAttribute("wishItem", new WishItemModel());
 
-        return "createItem";
+
+    @PostMapping("/createitem")
+    public String createWishItem(@RequestParam String itemTitle,
+                                 @RequestParam String itemDescription,
+                                 @RequestParam String itemURL,
+                                 @RequestParam double itemPrice,
+                                 @RequestParam int wishlistId) {
+        wishItemService.createWishItemForWishlist(wishlistId, itemTitle, itemDescription, itemPrice, itemURL);
+        return "redirect:/wishitem/list/" + wishlistId;
     }
+
 
     @PostMapping("/save")
     public String saveWishItem(@ModelAttribute WishItemModel wishItem) {

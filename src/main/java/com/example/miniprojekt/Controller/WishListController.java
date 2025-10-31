@@ -46,8 +46,7 @@ public class WishListController {
 
 
     @PostMapping("/createwishlist")
-    public String createWishList(@RequestParam String wishListName,
-                                 @RequestParam String wishListDescription) {
+    public String createWishList(@RequestParam String wishListName, @RequestParam String wishListDescription) {
         wishListService.createWishList(wishListName, wishListDescription);
         return "redirect:/wishlist"; // tilbage til listen
     }
