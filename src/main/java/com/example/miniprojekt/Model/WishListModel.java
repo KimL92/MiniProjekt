@@ -1,49 +1,25 @@
 package com.example.miniprojekt.Model;
 
-import java.util.List;
-
 public class WishListModel {
     private int wishListID;
-    private String wishListItem;
     private String wishListName;
-    private String wishItemList;
+    private String wishListDescription;
 
+    public WishListModel() {}
 
-    public WishListModel() {
-    }
-
-    public int getWishListID() {
-        return wishListID;
-    }
-
-    public void setWishListID(int wishListID) {
+    public WishListModel(int wishListID, String wishListName, String wishListDescription) {
         this.wishListID = wishListID;
-    }
-
-    public String getWishListItem() {
-        return wishListItem;
-    }
-
-    public void setWishListItem(String wishListItem) {
-        this.wishListItem = wishListItem;
-    }
-
-    public String getWishListName() {
-        return wishListName;
-    }
-
-    public void setWishListName(String wishListName) {
         this.wishListName = wishListName;
+        this.wishListDescription = wishListDescription;
     }
 
-    public String getWishItemList() {
-        return wishItemList;
-    }
+    // Getters & setters
+    public int getWishListID() { return wishListID; }
+    public void setWishListID(int wishListID) { this.wishListID = wishListID; }
 
-    public void setWishItemList(String wishItemList) {
-        this.wishItemList = wishItemList;
-    }
+    public String getWishListName() { return wishListName; }
+    public void setWishListName(String wishListName) { this.wishListName = wishListName; }
+
+    public String getWishListDescription() { return wishListDescription; }
+    public void setWishListDescription(String wishListDescription) { this.wishListDescription = wishListDescription; }
 }
-
-
-

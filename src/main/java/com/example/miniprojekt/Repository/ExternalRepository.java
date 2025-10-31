@@ -12,7 +12,7 @@ public class ExternalRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void createExternslStores(String storeName, String storeURL, String storeDescription, String storeCategory) {
+    public void createExternalStores(String storeName, String storeURL, String storeDescription, String storeCategory) {
         jdbcTemplate.update("INSERT INTO externalStores(storeName,storeURL, storeDescription, storeCategory) VALUES (?, ?, ?, ?)",
                 storeName, storeURL, storeDescription,storeCategory);
         System.out.println(storeName + storeURL + storeDescription + storeCategory);

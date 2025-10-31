@@ -27,7 +27,8 @@ public class WishItemController {
         String itemTitle = "hej";
         String itemDescription = "fedt";
         double itemPrice = 899;
-        wishItemService.createWishItem(itemTitle, itemDescription, itemPrice);
+        String itemURL = "hhtvje";
+        wishItemService.createWishItem(itemTitle, itemDescription, itemPrice,itemURL);
 
         return "createItem";
     }

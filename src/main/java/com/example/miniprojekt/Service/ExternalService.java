@@ -12,12 +12,12 @@ public class ExternalService {
     @Autowired
     private ExternalRepository externalRepository;
 
-    public void ExternalRepository  (ExternalRepository externalRepository){
+    public void ExternalRepository (ExternalRepository externalRepository){
         this.externalRepository = externalRepository;
     }
 
-    public void createExternslStores(String storeName, String storeURL, String storeDescription, String storeCategory){
-        externalRepository.createExternslStores(storeName, storeURL, storeDescription, storeCategory);
+    public void createExternalStores(String storeName, String storeURL, String storeDescription, String storeCategory){
+        externalRepository.createExternalStores(storeName, storeURL, storeDescription, storeCategory);
     }
 
     public void deleteExternalStore(long storeID) {

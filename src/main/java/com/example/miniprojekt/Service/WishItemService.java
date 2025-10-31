@@ -18,9 +18,9 @@ public class WishItemService {
         this.wishItemRepository = wishItemRepository;
     }
 
-    public WishItemModel findWishItemByTitle(String name) {
+    public WishItemModel findWishItemByTitle(String itemTitle) {
         return wishItemRepository.getAllItems().stream()
-                .filter(item -> item.getItemTitle().equalsIgnoreCase(name))
+                .filter(item -> item.getItemTitle().equalsIgnoreCase(itemTitle))
                 .findFirst()
                 .orElse(null);
     }
@@ -34,8 +34,8 @@ public class WishItemService {
         wishItemRepository.deleteItemTitle(itemTitle);
     }
 
-    public void createWishItem( String itemTitle ,String itemDescription, double itemPrice){
-        wishItemRepository.createWishItem(itemTitle ,itemDescription, itemPrice);
+    public void createWishItem( String itemTitle ,String itemDescription, double itemPrice, String itemURL){
+        wishItemRepository.createWishItem(itemTitle ,itemDescription, itemPrice, itemURL);
         System.out.println(itemTitle + itemDescription + itemPrice);
     }
 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ønskeskyen</title>
+    <link th:href="@{/main.css}" rel="stylesheet">
+</head>
+<body>
+<h1>Ønskeliste</h1>
+
+<table>
+    <tr th:if="${wishlists.isEmpty()}">
+        <td colspan="3">Der er ingen ønskelister endnu</td>
+    </tr>
+
+    <tr th:each="wishlist : ${wishlists}">
+        <td th:text="${wishlist.wishListName}"></td>
+        <td th:text="${wishlist.wishListDescription}"></td>
+        <td>
+            <a th:href="@{/wishlist/{id}/edit(id=${wishlist.wishListID})}">Opdater</a>
+            <form th:action="@{/wishlist/delete/{id}(id=${wishlist.wishListID})}" method="post" style="display:inline">
+                <button type="submit">Slet</button>
+            </form>
+        </td>
+    </tr>
+
+</table>
+
+<a th:href="@{/wishlist/add}"><button>Opret ny ønskeliste</button></a>
+
+</body>
+</html>
