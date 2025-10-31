@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="DA">
 <head>
     <meta charset="UTF-8">
     <title>Ønskeskyen</title>
@@ -11,6 +11,12 @@
 <table>
     <tr th:if="${wishlists.isEmpty()}">
         <td colspan="3">Der er ingen ønskelister endnu</td>
+    </tr>
+
+    <tr th:if="${!wishlists.isEmpty()}">
+            <th>Navn</th>
+            <th>Beskrivelse</th>
+            <th>Handling</th>
     </tr>
 
     <tr th:each="wishlist : ${wishlists}">
