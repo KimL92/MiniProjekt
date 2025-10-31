@@ -32,6 +32,8 @@ public class WishListController {
 
     }
 
+
+
  // shababs problemet er her, at vi hardkoder ID'et ind her. Det skal vi ikke. Vi kan ikke vide, hvilket produkt som
     // brugeren gerne vil ind på. det er ikke altid 22 jo.
     @PostMapping("/createwishlist")
@@ -43,18 +45,16 @@ public class WishListController {
         return "wishlist";
     }
 
-    @GetMapping("/view")
+    @GetMapping()
     public String showAllWishlists(Model model) {
         List<WishListModel> wishlists = wishListService.getAllWishlists();
         model.addAttribute("wishlists", wishlists);
         return "wishlist";
     }
 
-//update og delete mangler
-
-    @PostMapping("/delete/{wishListID}")
-    public String deleteWishlist(@PathVariable int wishListID) {
-        wishListService.deleteWishlist(wishListID);
+    @PostMapping("/delete/{id}")
+    public String deleteWishlist(@PathVariable int id) {
+        wishListService.deleteWishlist(id);
         return "redirect:/wishlist";
     }
 
