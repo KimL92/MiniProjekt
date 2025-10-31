@@ -37,14 +37,14 @@ public class WishListController {
 //        return "wishlist";
 //    }
 
-    // VIS OPRET-FORM: GET /wishlist/create
+
     @GetMapping("/createwishlist")
     public String showCreateForm(Model model) {
-        model.addAttribute("wishlist", new WishListModel()); // model til formular
+        model.addAttribute("wishlist", new WishListModel());
         return "createwishlist";
     }
 
-    // GEM NY: POST /wishlist/create
+
     @PostMapping("/createwishlist")
     public String createWishList(@RequestParam String wishListName,
                                  @RequestParam String wishListDescription) {
