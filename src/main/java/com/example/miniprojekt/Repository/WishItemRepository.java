@@ -17,11 +17,10 @@ public class WishItemRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-// TODO allan kan du forklare hvad du mener from item??
-    public void deleteItemTitle(String itemTitle) {
-        WishItemModel existing = findWishItemByTitle(itemTitle);
+    public void deleteItemByItemID(int itemID) {
+        WishItemModel existing = findWishItemByItemID(itemID);
         if (existing != null) {
-            jdbcTemplate.update("DELETE FROM wishitem WHERE itemTitle=?", itemTitle);
+            jdbcTemplate.update("DELETE FROM wishitem WHERE itemTitle=?", itemID);
         }
     }
 
@@ -40,7 +39,24 @@ public class WishItemRepository {
         }, itemTitle);
         return list.isEmpty() ? null : list.get(0);
     }
-    //
+
+    public WishItemModel findWishItemByItemID(int itemID) {
+        String sql = "SELECT * FROM wishitem WHERE item_id = ?";
+
+        List<WishItemModel> list = jdbcTemplate.query(sql, (rs, rowNum) -> {
+        Integer itemID = rs.getInt("itemID");
+            return new WishItemModel(
+                    rs.getInt("item_id"),
+                    rs.getString("item_title"),
+                    rs.getString("item_description"),
+                    rs.getDouble("item_price"),
+                    rs.getString("item_url")
+            );
+        }, itemID);
+
+        return list.isEmpty() ? null : list.get(0);
+    }
+
 
     public void createWishItem(String itemTitle, String itemDescription, double itemPrice, String itemURL) {
         jdbcTemplate.update("INSERT INTO wishitem ( itemTitle, itemDescription, itemPrice, itemURL) VALUES (?,?, ?, ?)",

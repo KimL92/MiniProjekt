@@ -7,16 +7,26 @@
 </head>
 <body>
 
-<h1>tilføj ønsker </h1>
+<h1>Tilføj ønsker </h1>
 
 <table>
-    <tr>
+    <tr th:if="${items != null and !#lists.isEmpty(items)}">
+        <th>Navn</th>
+        <th>Beskrivelse</th>
+        <th>Pris</th>
+        <th>Link</th>
+
     </tr>
     <tr th:each="item : ${items}">
         <td th:text="${item.itemTitle}"></td>
         <td th:text="${item.itemDescription}"></td>
         <td th:text="${item.itemPrice}"></td>
         <td><a th:href="${item.itemURL}" target="_blank">Link</a></td>
+<td>
+
+    <button type="submit">Slet</button>
+</td>
+
     </tr>
 </table>
 

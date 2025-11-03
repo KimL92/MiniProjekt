@@ -44,7 +44,7 @@ public class WishItemController {
     @PostMapping("/save")
     public String saveWishItem(@ModelAttribute WishItemModel wishItem) {
         wishItemService.saveWishItem(wishItem);
-        return "redirect:/WishItem";
+        return "redirect:/wishItem";
     }
 
 //    @GetMapping("/all")
@@ -55,10 +55,10 @@ public class WishItemController {
 //        return "viewItems"; // vi skal lave en html til det
 //    }
 
-    @PostMapping("/delete/{itemTitle}")
-    public String deleteItemTitle(@PathVariable String itemTitle) {
-        wishItemService.deleteItemTitle(itemTitle);
-        return "redirect:/WishItem/all";
+    @PostMapping("/delete/{itemID}")
+    public String deleteItemByItemID(@PathVariable int itemID) {
+        wishItemService.deleteItemByItemID(itemID);
+        return "redirect:/wishlistitems";
     }
 
     @PostMapping("/{name}/update")

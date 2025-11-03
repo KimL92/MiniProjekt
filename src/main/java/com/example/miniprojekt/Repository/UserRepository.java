@@ -1,6 +1,5 @@
 package com.example.miniprojekt.Repository;
 
-import com.example.miniprojekt.Model.UserModel;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
