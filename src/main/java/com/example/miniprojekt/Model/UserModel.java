@@ -1,7 +1,5 @@
 package com.example.miniprojekt.Model;
 
-import java.time.LocalDate;
-
 public class UserModel {
     private long userID;
     private String userName;

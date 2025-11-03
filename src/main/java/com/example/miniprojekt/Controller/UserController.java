@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/wishitem")
+@RequestMapping("/registerpage")
 
 public class UserController {
 
@@ -17,7 +17,22 @@ public class UserController {
         this.userService = userService;
     }
 
-//    // test for at se om det virker
+    // rigtige metode
+    @GetMapping()
+    public String createUser(Model model) {
+        model.addAttribute("user", new UserModel());
+        return "register-user";
+    }
+
+    @PostMapping()
+    public String createUserPost(@ModelAttribute UserModel user) {
+        userService.createUser(user.getUserName(), user.getEmail(), user.getUserPassword());
+        return "redirect:/wishlist"; // eller en anden side
+    }
+
+}
+
+// test for at se om det virker
 //    @GetMapping("/register")
 //    public String createUser() {
 //        String userName = "Moha2200";
@@ -28,14 +43,3 @@ public class UserController {
 //        return "register-user";
 //
 //    }
-
-    // rigtige metode
-    @GetMapping("/registeruser")
-    public String createUser(Model model) {
-        model.addAttribute("user", new UserModel());
-
-        return "register-user";
-    }
-
-}
-

@@ -1,5 +1,6 @@
 package com.example.miniprojekt.Service;
 
+import com.example.miniprojekt.Model.UserModel;
 import com.example.miniprojekt.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,6 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -20,5 +20,4 @@ public class UserService {
         System.out.println(userName + email + userPassword);
 
     }
-
 }
