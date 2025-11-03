@@ -55,10 +55,10 @@ public class WishItemController {
 //        return "viewItems"; // vi skal lave en html til det
 //    }
 
-    @PostMapping("/delete/{itemID}")
-    public String deleteItemByItemID(@PathVariable int itemID) {
+    @PostMapping("/delete")
+    public String deleteItemByItemID(@RequestParam int itemID, @RequestParam int wishlistId) {
         wishItemService.deleteItemByItemID(itemID);
-        return "redirect:/wishlistitems";
+        return "redirect:/wishitem/list/" + wishlistId;
     }
 
     @PostMapping("/{name}/update")

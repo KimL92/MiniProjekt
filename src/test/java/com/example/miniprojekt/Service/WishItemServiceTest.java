@@ -69,11 +69,11 @@ public class WishItemServiceTest {
 
     @Test
     void deleteItemTitle() {
-        String itemTitle = "Moha";
+        int itemID = 0;
 
-        wishItemService.deleteItemTitle(itemTitle);
+        wishItemService.deleteItemByItemID(itemID);
 
-        verify(wishItemRepository,times(1)).deleteItemTitle(itemTitle);
+        verify(wishItemRepository,times(1)).deleteItemByItemID(itemID);
 
 
     }

@@ -24,7 +24,16 @@
         <td><a th:href="${item.itemURL}" target="_blank">Link</a></td>
 <td>
 
-    <button type="submit">Slet</button>
+
+    <form th:action="@{/wishitem/delete}" method="post">
+        <input type="hidden" name="itemID" th:value="${item.itemID}">
+        <input type="hidden" name="wishlistId" th:value="${wishlistId}">
+        <button type="submit">Slet</button>
+    </form>
+
+
+
+
 </td>
 
     </tr>

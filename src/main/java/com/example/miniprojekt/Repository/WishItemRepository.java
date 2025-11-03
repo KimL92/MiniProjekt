@@ -20,39 +20,36 @@ public class WishItemRepository {
     public void deleteItemByItemID(int itemID) {
         WishItemModel existing = findWishItemByItemID(itemID);
         if (existing != null) {
-            jdbcTemplate.update("DELETE FROM wishitem WHERE itemTitle=?", itemID);
+            jdbcTemplate.update("DELETE FROM wishitem WHERE item_id=?", itemID);
         }
     }
 
     public WishItemModel findWishItemByTitle(String itemTitle) {
-        String sql = "SELECT * FROM wishitem WHERE itemTitle = ?";
+        String sql = "SELECT * FROM wishitem WHERE item_title = ?";
 
-        List<WishItemModel> list = jdbcTemplate.query(sql, (rs, rowNum) -> {
-            int itemID = rs.getInt("itemID");
-            return new WishItemModel(
-                    rs.getInt("itemID"),
-                    rs.getString("itemTitle"),
-                    rs.getString("itemDescription"),
-                    rs.getInt("itemPrice"),
-                    rs.getString("itemURL")
-            );
-        }, itemTitle);
+        List<WishItemModel> list = jdbcTemplate.query(sql, (rs, rowNum) ->
+                new WishItemModel(
+                        rs.getInt("item_id"),
+                        rs.getString("item_title"),
+                        rs.getString("item_description"),
+                        rs.getDouble("item_price"),
+                        rs.getString("item_url")
+                ), itemTitle);
+
         return list.isEmpty() ? null : list.get(0);
     }
 
     public WishItemModel findWishItemByItemID(int itemID) {
         String sql = "SELECT * FROM wishitem WHERE item_id = ?";
 
-        List<WishItemModel> list = jdbcTemplate.query(sql, (rs, rowNum) -> {
-        Integer itemID = rs.getInt("itemID");
-            return new WishItemModel(
-                    rs.getInt("item_id"),
-                    rs.getString("item_title"),
-                    rs.getString("item_description"),
-                    rs.getDouble("item_price"),
-                    rs.getString("item_url")
-            );
-        }, itemID);
+        List<WishItemModel> list = jdbcTemplate.query(sql, (rs, rowNum) ->
+                new WishItemModel(
+                        rs.getInt("item_id"),
+                        rs.getString("item_title"),
+                        rs.getString("item_description"),
+                        rs.getDouble("item_price"),
+                        rs.getString("item_url")
+                ), itemID);
 
         return list.isEmpty() ? null : list.get(0);
     }
