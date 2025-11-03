@@ -92,14 +92,18 @@ public class WishItemRepository {
     }
 
     public List<WishItemModel> getItemsByWishlistId(int wishlistId) {
-        String sql = "SELECT * FROM wishitem WHERE wishlistID = ?";
+        String sql = "SELECT item_id AS itemID, item_title AS itemTitle, item_description AS itemDescription, " +
+                "item_price AS itemPrice, item_url AS itemURL, wishlist_id AS wishlistID " +
+                "FROM wishitem WHERE wishlist_id = ?";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(WishItemModel.class), wishlistId);
     }
 
+
     public void createWishItemForWishlist(int wishlistId, String title, String description, double price, String url) {
-        String sql = "INSERT INTO wishitem (wishlistID, itemTitle, itemDescription, itemPrice, itemURL) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO wishitem (wishlist_id, item_title, item_description, item_price, item_url) VALUES (?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, wishlistId, title, description, price, url);
     }
+
 
 }
 

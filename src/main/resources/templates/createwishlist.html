@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="da">
 <head>
-  <meta charset="UTF-8">
-  <title>Opret ønskeliste</title>
-  <link th:href="@{/main.css}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Opret ønskeliste</title>
+    <link th:href="@{/main.css}" rel="stylesheet">
 </head>
 <body>
 <h1>Opret ønskeliste</h1>
 
-<form th:action="@{/wishlist/savewishlist}" method="post">
-  <label>Navn</label>
-  <input type="text" name="wishListName" required>
+<form th:action="@{/wishlist/savewishlist}" th:object="${wishlist}" method="post">
+    <label>Navn</label>
+    <input type="text" th:field="*{wishlistName}" required>
 
-  <label>Beskrivelse</label>
-  <input type="text" name="wishListDescription">
+    <label>Beskrivelse</label>
+    <input type="text" th:field="*{wishlistDescription}">
 
-  <button type="submit">Gem</button>
+    <button type="submit">Gem</button>
 </form>
 
 <a th:href="@{/wishlist}">Tilbage</a>

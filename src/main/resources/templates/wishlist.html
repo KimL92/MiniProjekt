@@ -20,12 +20,12 @@
     </tr>
 
     <tr th:each="wishlist : ${wishlists}">
-        <td th:text="${wishlist.wishListName}"></td>
-        <td th:text="${wishlist.wishListDescription}"></td>
+        <td th:text="${wishlist.wishlistName}"></td>
+        <td th:text="${wishlist.wishlistDescription}"></td>
         <td>
-            <a th:href="@{/wishitem/list/{id}(id=${wishlist.wishListID})}">Se liste</a>
-            <form th:action="@{/wishlist/delete/{id}(id=${wishlist.wishListID})}" method="post" style="display:inline">
-                <button type="submit">Slet</button>
+            <a th:href="@{/wishitem/list/{id}(id=${wishlist.wishlistID})}">Se liste</a>
+            <form th:action="@{/wishlist/delete/{id}(id=${wishlist.wishlistID})}" method="post" style="display:inline">
+            <button type="submit">Slet</button>
             </form>
         </td>
     </tr>
