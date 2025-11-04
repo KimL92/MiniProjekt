@@ -1,10 +1,7 @@
 package com.example.miniprojekt.Service;
 
-import com.example.miniprojekt.Controller.WishItemController;
 import com.example.miniprojekt.Model.WishItemModel;
 import com.example.miniprojekt.Repository.WishItemRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +9,6 @@ import java.util.List;
 @Service
 public class WishItemService {
 
-    @Autowired
     private WishItemRepository wishItemRepository;
 
     public WishItemService  (WishItemRepository wishItemRepository){

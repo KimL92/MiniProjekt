@@ -13,11 +13,9 @@ import java.util.List;
 public class WishItemController {
 
     private final WishItemService wishItemService;
-    private final WishlistController wishListController;
 
-    public WishItemController(WishItemService wishItemService, WishlistController wishListController) {
+    public WishItemController(WishItemService wishItemService) {
         this.wishItemService = wishItemService;
-        this.wishListController = wishListController;
     }
 
     @GetMapping("/list/{wishlistId}")
