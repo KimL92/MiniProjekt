@@ -25,12 +25,6 @@ public class WishlistController {
         return "wishlist";
     }
 
-//    @GetMapping("/createwishlist")
-//    public String createWishList(Model model) {
-//        model.addAttribute("wishlist", new WishListModel( "", ""));
-//        return "wishlist";
-//    }
-
     @GetMapping("/createwishlist")
     public String showCreateForm(Model model) {
         model.addAttribute("wishlist", new WishlistModel());
@@ -60,16 +54,6 @@ public class WishlistController {
         wishlistService.deleteWishlistItem(id);
         return "redirect:/wishlist";
     }
-
-//    @PostMapping("/{wishlistID}/edit")
-//    public String editWishlist(
-//            @PathVariable int wishlistID,
-//            @RequestParam String wishlistDescription,
-//            @RequestParam String wishlistName) {
-//
-//        wishListService.updateWishlist(wishlistID, wishlistDescription, wishlistName);
-//        return "redirect:/wishlist";
-//    }
 
     @PostMapping("/{wishlistID}/edit")
     public String showEditForm(@PathVariable int wishlistID, Model model) {

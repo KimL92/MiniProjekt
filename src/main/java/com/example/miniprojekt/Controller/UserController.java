@@ -29,17 +29,4 @@ public class UserController {
         userService.createUser(user.getUserName(), user.getEmail(), user.getUserPassword());
         return "redirect:/wishlist"; // eller en anden side
     }
-
 }
-
-// test for at se om det virker
-//    @GetMapping("/register")
-//    public String createUser() {
-//        String userName = "Moha2200";
-//        String email = "moha2200@stud.ek.dk";
-//        String userPassword = "mohaergay";
-//        userService.createUser(userName, email, userPassword);
-//
-//        return "register-user";
-//
-//    }

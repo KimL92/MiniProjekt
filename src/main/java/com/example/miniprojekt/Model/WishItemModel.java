@@ -7,9 +7,7 @@ public class WishItemModel {
     private double itemPrice;
     private String itemURL;
 
-    public WishItemModel(){
-
-    }
+    public WishItemModel(){}
 
     public WishItemModel( Integer itemID, String itemTitle, String itemDescription, double itemPrice, String itemURL) {
         this.itemID = itemID;
@@ -60,5 +58,4 @@ public class WishItemModel {
     }
 }
 
-//
 

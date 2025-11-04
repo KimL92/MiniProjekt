@@ -47,14 +47,6 @@ public class WishItemController {
         return "redirect:/wishItem";
     }
 
-//    @GetMapping("/all")
-//    public String showAllItems(Model model) {
-//        List<WishItemModel> items = wishItemService.getAllItems();
-//        model.addAttribute("items", items);
-//
-//        return "viewItems"; // vi skal lave en html til det
-//    }
-
     @PostMapping("/delete")
     public String deleteItemByItemID(@RequestParam int itemID, @RequestParam int wishlistId) {
         wishItemService.deleteItemByItemID(itemID);
