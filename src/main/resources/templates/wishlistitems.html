@@ -15,41 +15,48 @@
         <th>Beskrivelse</th>
         <th>Pris</th>
         <th>Link</th>
-
     </tr>
+
     <tr th:each="item : ${items}">
         <td th:text="${item.itemTitle}"></td>
         <td th:text="${item.itemDescription}"></td>
         <td th:text="${item.itemPrice}"></td>
         <td><a th:href="${item.itemURL}" target="_blank">Link</a></td>
-<td>
 
-
-    <form th:action="@{/wishitem/delete}" method="post">
-        <input type="hidden" name="itemID" th:value="${item.itemID}">
-        <input type="hidden" name="wishlistId" th:value="${wishlistId}">
-        <button type="submit">Slet</button>
-    </form>
-
-
-
-
-</td>
-
+        <td>
+            <form th:action="@{/wishitem/delete}" method="post">
+            <input type="hidden" name="itemID" th:value="${item.itemID}">
+            <input type="hidden" name="wishlistId" th:value="${wishlistId}">
+            <button type="submit">Slet</button>
+            </form>
+        </td>
     </tr>
 </table>
 
 <h2>Tilføj nyt ønske</h2>
 <form th:action="@{/wishitem/createitem}" method="post">
     <input type="hidden" name="wishlistId" th:value="${wishlistId}">
-    <label>Titel:</label><input type="text" name="itemTitle"><br>
-    <label>Beskrivelse:</label><input type="text" name="itemDescription"><br>
-    <label>Pris:</label><input type="number" step="0.01" name="itemPrice"><br>
-    <label>URL:</label><input type="text" name="itemURL"><br>
+
+    <label>Titel:</label>
+    <input type="text" name="itemTitle">
+    <br>
+
+    <label>Beskrivelse:</label>
+    <input type="text" name="itemDescription">
+    <br>
+
+    <label>Pris:</label>
+    <input type="number" step="0.01" name="itemPrice">
+    <br>
+
+    <label>URL:</label>
+    <input type="text" name="itemURL">
+    <br>
+
     <button type="submit">Tilføj ønske</button>
 </form>
-
 <br>
+
 <a th:href="@{/wishlist}">← Tilbage til ønskelister</a>
 
 </body>
