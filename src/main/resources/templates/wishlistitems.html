@@ -2,18 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="da">
 <head>
     <meta charset="UTF-8">
-    <title>Ønskeliste</title>
+    <title>Wishlist</title>
     <link th:href="@{/main.css}" rel="stylesheet">
 </head>
 <body>
 
-<h1>Tilføj ønsker </h1>
+<h1>Add wishes</h1>
 
 <table>
     <tr th:if="${items != null and !#lists.isEmpty(items)}">
-        <th>Navn</th>
-        <th>Beskrivelse</th>
-        <th>Pris</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
         <th>Link</th>
     </tr>
 
@@ -27,37 +27,37 @@
             <form th:action="@{/wishitem/delete}" method="post">
             <input type="hidden" name="itemID" th:value="${item.itemID}">
             <input type="hidden" name="wishlistId" th:value="${wishlistId}">
-            <button type="submit">Slet</button>
+            <button type="submit">Delete</button>
             </form>
         </td>
     </tr>
 </table>
 
-<h2>Tilføj nyt ønske</h2>
+<h2>Add new wish</h2>
 <form th:action="@{/wishitem/createitem}" method="post">
     <input type="hidden" name="wishlistId" th:value="${wishlistId}">
 
-    <label>Titel:</label>
+    <label>Title:</label>
     <input type="text" name="itemTitle">
     <br>
 
-    <label>Beskrivelse:</label>
+    <label>Description:</label>
     <input type="text" name="itemDescription">
     <br>
 
-    <label>Pris:</label>
+    <label>Price:</label>
     <input type="number" step="0.01" name="itemPrice">
     <br>
 
-    <label>URL:</label>
+    <label>Link:</label>
     <input type="text" name="itemURL">
     <br>
 
-    <button type="submit">Tilføj ønske</button>
+    <button type="submit">Add wish</button>
 </form>
 <br>
 
-<a th:href="@{/wishlist}">← Tilbage til ønskelister</a>
+<a th:href="@{/wishlist}">← Return to wishlists</a>
 
 </body>
 </html>

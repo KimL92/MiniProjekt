@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Opret Bruger</title>
+    <title>Create user</title>
     <style>
         * {
             margin: 0;
@@ -108,8 +108,8 @@
 </head>
 <body>
 <div class="container">
-    <h1>Velkommen til 1 Ummahs ønskeliste</h1>
-    <h2>Opret en bruger for at komme videre</h2>
+    <h1>Welcome to 1 ummahs wishlist</h1>
+    <h2>Create a user to go forward</h2>
 
     <!-- Error message vises her -->
     <div th:if="${error}" class="error-message">
@@ -118,7 +118,7 @@
 
     <form th:action="@{/registerpage}" th:object="${user}" method="post">
         <div class="form-group">
-            <label for="userName">Brugernavn:</label>
+            <label for="userName">Username:</label>
             <input type="text" id="userName" th:field="*{userName}" required>
         </div>
 
@@ -128,11 +128,11 @@
         </div>
 
         <div class="form-group">
-            <label for="userPassword">Adgangskode:</label>
+            <label for="userPassword">Password:</label>
             <input type="password" id="userPassword" th:field="*{userPassword}" required>
         </div>
 
-        <button type="submit" class="btn-submit">Opret Bruger</button>
+        <button type="submit" class="btn-submit">Create user</button>
     </form>
 </div>
 </body>
