@@ -15,11 +15,6 @@ public class WishlistService {
         this.wishlistRepository = wishlistRepository;
     }
 
-    public void createWishlist_user(int wishlistID, long userID) {
-        wishlistRepository.createWishlist_user(wishlistID,userID);
-        System.out.println(wishlistID + userID);
-    }
-
     public void createWishlist(String wishlistName, String wishlistDescription){
         wishlistRepository.createWishlist(wishlistName, wishlistDescription);
     }
@@ -37,10 +32,6 @@ public class WishlistService {
     }
 
     public void deleteWishlistItem(int id) {
-    }
-
-    public void updateWishlist(int wishlistID, String wishlistDescription, String wishlistName){
-        wishlistRepository.updateWishlist(wishlistID, wishlistDescription, wishlistName);
     }
 
     public void saveWishlist(WishlistModel wishlistModel) {

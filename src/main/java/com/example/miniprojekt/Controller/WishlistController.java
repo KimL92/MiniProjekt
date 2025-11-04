@@ -54,13 +54,5 @@ public class WishlistController {
         wishlistService.deleteWishlistItem(id);
         return "redirect:/wishlist";
     }
-
-    @PostMapping("/{wishlistID}/edit")
-    public String showEditForm(@PathVariable int wishlistID, Model model) {
-        WishlistModel wishlist = wishlistService.getWishlistByID(wishlistID);
-        model.addAttribute("wishlist", wishlist);
-        return "editWishlist"; // lav en thymeleaf-side til at redigere
-    }
-
 }
 

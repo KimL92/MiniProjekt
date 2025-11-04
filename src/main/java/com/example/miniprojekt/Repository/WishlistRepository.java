@@ -15,11 +15,6 @@ public class WishlistRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void createWishlist_user(int wishlistID, long userID) {
-        jdbcTemplate.update("INSERT INTO user_wishlist (wishlist_id, user_id) VALUES (?, ?)",
-        userID,wishlistID);
-    }
-
     public void createWishlist(String wishlistName, String wishlistDescription){
         jdbcTemplate.update("INSERT INTO wishlist (wishlist_name, wishlist_description) VALUES (?, ?)",
         wishlistName, wishlistDescription);
@@ -45,13 +40,6 @@ public class WishlistRepository {
 
     public void deleteWishlist(int wishlistID) {
         jdbcTemplate.update("DELETE FROM wishlist WHERE wishlist_id = ?", wishlistID);
-    }
-
-    public void updateWishlist(int wishlistID, String wishlistDescription, String wishlistName) {
-        jdbcTemplate.update(
-                "UPDATE wishlist SET wishlist_name = ?, wishlist_description = ? WHERE wishlist_id = ?",
-                wishlistName, wishlistDescription, wishlistID
-        );
     }
 
     public void saveWishlist(WishlistModel wishlistModel) {

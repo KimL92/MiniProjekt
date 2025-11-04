@@ -54,14 +54,11 @@ public class WishItemRepository {
         return list.isEmpty() ? null : list.get(0);
     }
 
-
     public void createWishItem(String itemTitle, String itemDescription, double itemPrice, String itemURL) {
         jdbcTemplate.update("INSERT INTO wishitem ( itemTitle, itemDescription, itemPrice, itemURL) VALUES (?,?, ?, ?)",
         itemTitle, itemDescription,itemPrice, itemURL);
         System.out.println(itemPrice + itemTitle + itemDescription + itemURL);
-
     }
-
 
     public WishItemModel saveWishItem(WishItemModel wishItemModel) {
         WishItemModel existing = findWishItemByTitle(wishItemModel.getItemTitle());
@@ -86,7 +83,6 @@ public class WishItemRepository {
             wishItemModel.getItemTitle(), wishItemModel.getItemDescription(),wishItemModel.getItemPrice(),wishItemModel.getItemURL()
             );
 
-
             // drenge hernede henter vi det nye itemID
             Integer itemID = jdbcTemplate.queryForObject("SELECT itemID FROM wishitem WHERE itemTitle=?",
                     Integer.class,
@@ -95,7 +91,6 @@ public class WishItemRepository {
 
             wishItemModel.setItemID(itemID);
             return wishItemModel;
-
         }
     }
 //BeanPropertyRowMapper - Den matcher kolonnenavne med felter i klassen - så vi ikke skal hardkode rs,rowNum;
@@ -111,12 +106,9 @@ public class WishItemRepository {
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(WishItemModel.class), wishlistId);
     }
 
-
     public void createWishItemForWishlist(int wishlistId, String title, String description, double price, String url) {
         String sql = "INSERT INTO wishitem (wishlist_id, item_title, item_description, item_price, item_url) VALUES (?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, wishlistId, title, description, price, url);
     }
-
-
 }
 

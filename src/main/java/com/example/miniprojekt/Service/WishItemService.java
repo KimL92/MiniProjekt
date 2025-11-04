@@ -40,11 +40,6 @@ public class WishItemService {
         return wishItemRepository.getAllItems();
     }
 
-
-    public void createWishList(double itemPrice, String itemDescription, String itemURL, String itemTitle) {
-        wishItemRepository.createWishItem(itemTitle,itemDescription,itemPrice,itemURL);
-    }
-
     public List<WishItemModel> getItemsByWishlistId(int wishlistId) {
         return wishItemRepository.getItemsByWishlistId(wishlistId);
     }
