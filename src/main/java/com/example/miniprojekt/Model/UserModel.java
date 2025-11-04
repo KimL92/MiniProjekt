@@ -6,6 +6,8 @@ public class UserModel {
     private String email;
     private String userPassword;
 
+
+
     public long getUserID() {
         return userID;
     }
@@ -32,6 +34,9 @@ public class UserModel {
 
     public String getUserPassword() {
         return userPassword;
+    }
+
+    public UserModel() {
     }
 
     public void setUserPassword(String userPassword) {

@@ -28,6 +28,7 @@ public class WishlistService {
     }
 
     public void deleteWishlistItem(int id) {
+        wishlistRepository.deleteWishlist(id);
     }
 
     public void saveWishlist(WishlistModel wishlistModel) {
