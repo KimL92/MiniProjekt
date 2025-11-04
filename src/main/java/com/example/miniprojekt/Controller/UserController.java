@@ -25,8 +25,19 @@ public class UserController {
     }
 
     @PostMapping()
-    public String createUserPost(@ModelAttribute UserModel user) {
-        userService.createUser(user.getUserName(), user.getEmail(), user.getUserPassword());
-        return "redirect:/wishlist"; // eller en anden side
+    public String createUserPost(@ModelAttribute UserModel user, Model model) {
+        System.out.println("Forsøger at oprette bruger: " + user.getEmail());
+
+        boolean success = userService.createUser(user.getUserName(), user.getEmail(), user.getUserPassword());
+
+        if (!success) {
+            System.out.println("Oprettelse fejlede - viser error");
+            model.addAttribute("error", "Denne email er allerede i brug. Vælg venligst en anden email.");
+            model.addAttribute("user", user);
+            return "register-user";
+        }
+
+        System.out.println("Bruger oprettet - redirecter...");
+        return "redirect:/wishlist";
     }
 }

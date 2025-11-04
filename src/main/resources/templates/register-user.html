@@ -94,10 +94,15 @@
             transform: translateY(0);
         }
 
-        .error {
-            color: #e74c3c;
-            font-size: 14px;
-            margin-top: 5px;
+        .error-message {
+            background-color: #ffebee;
+            border: 2px solid #e74c3c;
+            color: #c0392b;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -105,6 +110,12 @@
 <div class="container">
     <h1>Velkommen til 1 Ummahs ønskeliste</h1>
     <h2>Opret en bruger for at komme videre</h2>
+
+    <!-- Error message vises her -->
+    <div th:if="${error}" class="error-message">
+        <p th:text="${error}"></p>
+    </div>
+
     <form th:action="@{/registerpage}" th:object="${user}" method="post">
         <div class="form-group">
             <label for="userName">Brugernavn:</label>
