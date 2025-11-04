@@ -19,10 +19,6 @@ public class WishlistService {
         wishlistRepository.createWishlist(wishlistName, wishlistDescription);
     }
 
-    public WishlistModel getWishlistByID(int id) {
-        return wishlistRepository.findWishlistByWishlistID(id);
-    }
-
     public List<WishlistModel> getAllWishlists() {
         return wishlistRepository.getAllWishlists();
     }
