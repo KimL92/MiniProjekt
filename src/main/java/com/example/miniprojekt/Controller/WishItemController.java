@@ -50,22 +50,6 @@ public class WishItemController {
         wishItemService.deleteItemByItemID(itemID);
         return "redirect:/wishitem/list/" + wishlistId;
     }
-
-    @PostMapping("/{name}/update")
-    public String updateItem(@PathVariable String itemTitle, @ModelAttribute WishItemModel wishItem) {
-        wishItemService.saveWishItem(wishItem);
-        return "redirect:/wishlist";
-    }
-
-    @GetMapping("/{name}/edit")
-    public String showEditWishItem(@PathVariable String name, Model model) {
-        WishItemModel item = wishItemService.findWishItemByTitle(name);
-        if (item == null) {
-            return "redirect:/wishlist";
-        }
-        model.addAttribute("wishItem", item);
-        return "editItem";
-        }
-    }
+}
 
 

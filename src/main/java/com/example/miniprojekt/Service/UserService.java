@@ -30,4 +30,10 @@ public class UserService {
             return false;
         }
     }
+
+    public int validateLogin(String username, String userPassword) {
+        int id = 0;
+        id = userRepository.validateLogin(username, userPassword);
+        return id;
+    }
 }

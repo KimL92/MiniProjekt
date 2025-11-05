@@ -17,4 +17,12 @@ public class UserRepository {
                 userName, email, userPassword);
         System.out.println(userName + email + userPassword);
     }
+
+    public int validateLogin(String username, String userPassword) {
+        int id = 0;
+        id = jdbcTemplate.queryForObject("SELECT user_id FROM user WHERE username = ? AND user_password = ?",
+        Integer.class, username, userPassword);
+
+        return id;
+    }
 }

@@ -29,6 +29,15 @@ public class WishlistRepository {
         ), wishlistId);
     }
 
+    public List<WishlistModel> findWishlistByUserID(int userID) {
+        String sql = "SELECT w.* FROM wishlist w INNER JOIN user_wishlist uw ON w.wishlist_id = uw.wishlist_id WHERE uw.user_id = ?;";
+        return jdbcTemplate.query(sql, (rs, rowNum) -> new WishlistModel(
+                rs.getInt("wishlist_id"),
+                rs.getString("wishlist_name"),
+                rs.getString("wishlist_description")
+        ), userID);
+    }
+
     public List<WishlistModel> getAllWishlists() {
         String sql = "SELECT * FROM wishlist";
         return jdbcTemplate.query(sql, (rs, rowNum) -> new WishlistModel(

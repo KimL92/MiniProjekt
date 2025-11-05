@@ -25,6 +25,13 @@ public class WishlistController {
         return "wishlist";
     }
 
+    @GetMapping("/show-wishlist")
+    public String showWishlistByUserID(@RequestParam("id") int userID, Model model) {
+        List<WishlistModel> wishlists = wishlistService.findWishlistByUserID(userID);
+        model.addAttribute("wishlists", wishlists);
+        return "wishlist";
+    }
+
     @GetMapping("/createwishlist")
     public String showCreateForm(Model model) {
         model.addAttribute("wishlist", new WishlistModel());

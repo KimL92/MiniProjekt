@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/registerpage")
+@RequestMapping("/login")
 
 public class UserController {
 
@@ -17,14 +17,19 @@ public class UserController {
         this.userService = userService;
     }
 
-    // rigtige metode
     @GetMapping()
+    public String getLogin() {
+        return "login";
+    }
+
+    // rigtige metode
+    @GetMapping("/create-user")
     public String createUser(Model model) {
         model.addAttribute("user", new UserModel());
         return "register-user";
     }
 
-    @PostMapping()
+    @PostMapping(("/create-user"))
     public String createUserPost(@ModelAttribute UserModel user, Model model) {
         System.out.println("Forsøger at oprette bruger: " + user.getEmail());
 
@@ -39,5 +44,24 @@ public class UserController {
 
         System.out.println("Bruger oprettet - redirecter...");
         return "redirect:/wishlist";
+    }
+
+    @GetMapping("/gotocreateuser")
+    public String createUserSite(Model model) {
+        model.addAttribute("user", new UserModel());
+        return "redirect:/register-user";
+    }
+
+    @PostMapping("/validate-login")
+    public String validateLogin(@RequestParam("username") String username, @RequestParam("password") String userPassword, Model model) {
+        Integer id = null;
+        id = userService.validateLogin(username, userPassword);
+
+        if (id != null) {
+            return "redirect:/wishlist/show-wishlist?id=" + id;
+        } else {
+            model.addAttribute("error", "Brugernavn eller kode er forkert. Prøv igen!");
+            return "redirect:/login";
+        }
     }
 }

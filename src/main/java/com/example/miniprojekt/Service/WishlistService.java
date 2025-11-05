@@ -23,11 +23,16 @@ public class WishlistService {
         return wishlistRepository.getAllWishlists();
     }
 
+    public List<WishlistModel> findWishlistByUserID(int userID) {
+        return wishlistRepository.findWishlistByUserID(userID);
+    }
+
     public void deleteWishlist(int wishlistID){
         wishlistRepository.deleteWishlist(wishlistID);
     }
 
     public void deleteWishlistItem(int id) {
+
     }
 
     public void saveWishlist(WishlistModel wishlistModel) {
