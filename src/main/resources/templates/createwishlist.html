@@ -2,22 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="da">
 <head>
     <meta charset="UTF-8">
-    <title>Opret ønskeliste</title>
-    <link th:href="@{/main.css}" rel="stylesheet">
+    <title>Create wishlist</title>
+    <link th:href="@{/createwishlist.css}" rel="stylesheet">
 </head>
 <body>
-<h1>Opret ønskeliste</h1>
+<h1>Create wishlist</h1>
 
 <form th:action="@{/wishlist/savewishlist}" th:object="${wishlist}" method="post">
-    <label>Navn</label>
+    <label>Name</label>
     <input type="text" th:field="*{wishlistName}" required>
 
-    <label>Beskrivelse</label>
+    <label>Description</label>
     <input type="text" th:field="*{wishlistDescription}">
 
-    <button type="submit">Gem</button>
+    <button type="submit">Save</button>
 </form>
 
-<a th:href="@{/wishlist}">Tilbage</a>
+<a th:href="@{/wishlist}">Return</a>
 </body>
 </html>

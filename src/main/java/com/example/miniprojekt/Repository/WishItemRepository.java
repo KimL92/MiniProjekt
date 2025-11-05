@@ -4,8 +4,6 @@ import com.example.miniprojekt.Model.WishItemModel;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
-import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -77,7 +75,7 @@ public class WishItemRepository {
             wishItemModel.setItemID(itemID);
             return wishItemModel;
 
-        }else {
+        } else {
             // bois herned under opretter den et nyt item
             jdbcTemplate.update("INSERT INTO wishitem(itemTitle, itemDescription ,itemPrice,itemURL) VALUES (?, ?, ?, ?)",
             wishItemModel.getItemTitle(), wishItemModel.getItemDescription(),wishItemModel.getItemPrice(),wishItemModel.getItemURL()

@@ -1,0 +1,147 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: grid;
+    place-items: center;
+    color: #fff;
+}
+
+/* TITLES */
+h1 {
+    font-size: 3rem;
+    margin-bottom: .5rem;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,.2);
+    animation: fadeInDown .6s ease-out;
+}
+h2 {
+    font-size: 1.25rem;
+    text-align: center;
+    color: #e7e9ff;
+    margin-bottom: 1.75rem;
+    font-weight: 500;
+    animation: fadeInDown .6s ease-out;
+}
+
+/* CARD CONTAINER */
+.container {
+    width: 100%;
+    max-width: 460px;
+    background: rgba(255,255,255,.12);
+    backdrop-filter: blur(14px);
+    border-radius: 18px;
+    padding: 32px 28px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.3);
+    animation: fadeInUp .6s ease-out;
+}
+
+/* FORM */
+.form-group { margin-bottom: 18px; }
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    letter-spacing: .2px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    background: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 1rem;
+    color: #333;
+    outline: none;
+    transition: box-shadow .25s ease, transform .1s ease;
+}
+
+input::placeholder { color: #9aa0b4; }
+
+input:focus {
+    box-shadow: 0 0 0 3px rgba(102,126,234,.35);
+    transform: translateY(-1px);
+}
+
+/* ERROR MESSAGE */
+.error-message {
+    background: rgba(220, 53, 69, .15);
+    border-left: 4px solid #dc3545;
+    color: #ffe5e7;
+    padding: 12px 14px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    animation: fadeIn .6s ease-out;
+}
+
+/* BUTTONS */
+.btn-submit {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,.2);
+    transition: transform .2s ease, box-shadow .3s ease, opacity .2s ease;
+    margin-top: 8px;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(102,126,234,.45);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 18px rgba(0,0,0,.25);
+}
+
+/* SECONDARY LINK BUTTON (Create user) */
+p { margin-top: 18px; text-align: center; }
+p .btn-submit {
+    background: transparent;
+    border: 2px solid #fff;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 600;
+    width: auto;
+    padding: 10px 18px;
+}
+
+p .btn-submit:hover {
+    background: #fff;
+    color: #667eea;
+    box-shadow: 0 10px 30px rgba(0,0,0,.2);
+}
+
+/* ANIMATIONS (match dit eksisterende tema) */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+    h1 { font-size: 2rem; }
+    .container { padding: 26px 22px; }
+}

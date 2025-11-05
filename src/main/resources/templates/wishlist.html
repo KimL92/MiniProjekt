@@ -2,36 +2,36 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="da">
 <head>
     <meta charset="UTF-8">
-    <title>Ønskeskyen</title>
-    <link th:href="@{/main.css}" rel="stylesheet">
+    <title>Wish cloud</title>
+    <link th:href="@{/wishlist.css}" rel="stylesheet">
 </head>
 <body>
-<h1>Ønskelister</h1>
+<h1>Wishlists</h1>
 
 <table>
     <tr th:if="${wishlists == null or #lists.isEmpty(wishlists)}">
-        <td colspan="3">Der er ingen ønskelister endnu</td>
+        <td colspan="3">There is no wishlist yet</td>
     </tr>
 
     <tr th:if="${wishlists != null and !#lists.isEmpty(wishlists)}">
-        <th>Navn</th>
-        <th>Beskrivelse</th>
-        <th>Handling</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Action</th>
     </tr>
 
     <tr th:each="wishlist : ${wishlists}">
         <td th:text="${wishlist.wishlistName}"></td>
         <td th:text="${wishlist.wishlistDescription}"></td>
         <td>
-            <a th:href="@{/wishitem/list/{id}(id=${wishlist.wishlistID})}">Se liste</a>
+            <a th:href="@{/wishitem/list/{id}(id=${wishlist.wishlistID})}">View list</a>
             <form th:action="@{/wishlist/delete/{id}(id=${wishlist.wishlistID})}" method="post" style="display:inline">
-            <button type="submit">Slet</button>
+            <button type="submit">Delete</button>
             </form>
         </td>
     </tr>
 </table>
 
-<a th:href="@{/wishlist/createwishlist}"><button>Opret ny ønskeliste</button></a>
+<a th:href="@{/wishlist/createwishlist}"><button>Create new wishlist</button></a>
 
 </body>
 </html>

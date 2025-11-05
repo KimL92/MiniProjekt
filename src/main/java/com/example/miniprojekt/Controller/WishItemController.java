@@ -5,7 +5,6 @@ import com.example.miniprojekt.Service.WishItemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @Controller
@@ -26,7 +25,7 @@ public class WishItemController {
         model.addAttribute("items", items);
         model.addAttribute("wishlistId", wishlistId);
 
-        return "wishlistItems";
+        return "wishlistitems";
     }
 
     @PostMapping("/createitem")
@@ -50,22 +49,6 @@ public class WishItemController {
         wishItemService.deleteItemByItemID(itemID);
         return "redirect:/wishitem/list/" + wishlistId;
     }
-
-    @PostMapping("/{name}/update")
-    public String updateItem(@PathVariable String itemTitle, @ModelAttribute WishItemModel wishItem) {
-        wishItemService.saveWishItem(wishItem);
-        return "redirect:/wishlist";
-    }
-
-    @GetMapping("/{name}/edit")
-    public String showEditWishItem(@PathVariable String name, Model model) {
-        WishItemModel item = wishItemService.findWishItemByTitle(name);
-        if (item == null) {
-            return "redirect:/wishlist";
-        }
-        model.addAttribute("wishItem", item);
-        return "editItem";
-        }
-    }
+}
 
 

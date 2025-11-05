@@ -25,6 +25,13 @@ public class WishlistController {
         return "wishlist";
     }
 
+    @GetMapping("/show-wishlist")
+    public String showWishlistByUserID(@RequestParam("id") int userID, Model model) {
+        List<WishlistModel> wishlists = wishlistService.findWishlistByUserID(userID);
+        model.addAttribute("wishlists", wishlists);
+        return "wishlist";
+    }
+
     @GetMapping("/createwishlist")
     public String showCreateForm(Model model) {
         model.addAttribute("wishlist", new WishlistModel());
@@ -46,12 +53,6 @@ public class WishlistController {
     @PostMapping("/delete/{id}")
     public String deleteWishlist(@PathVariable int id) {
         wishlistService.deleteWishlist(id);
-        return "redirect:/wishlist";
-    }
-
-    @PostMapping("/deleteitem/{id}")
-    public String deleteWishlistItem(@PathVariable int id) {
-        wishlistService.deleteWishlistItem(id);
         return "redirect:/wishlist";
     }
 }

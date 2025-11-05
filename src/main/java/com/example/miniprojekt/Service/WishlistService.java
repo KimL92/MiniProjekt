@@ -3,7 +3,6 @@ package com.example.miniprojekt.Service;
 import com.example.miniprojekt.Model.WishlistModel;
 import com.example.miniprojekt.Repository.WishlistRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -23,12 +22,12 @@ public class WishlistService {
         return wishlistRepository.getAllWishlists();
     }
 
-    public void deleteWishlist(int wishlistID){
-        wishlistRepository.deleteWishlist(wishlistID);
+    public List<WishlistModel> findWishlistByUserID(int userID) {
+        return wishlistRepository.findWishlistByUserID(userID);
     }
 
-    public void deleteWishlistItem(int id) {
-        wishlistRepository.deleteWishlist(id);
+    public void deleteWishlist(int wishlistID){
+        wishlistRepository.deleteWishlist(wishlistID);
     }
 
     public void saveWishlist(WishlistModel wishlistModel) {

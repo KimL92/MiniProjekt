@@ -3,7 +3,6 @@ package com.example.miniprojekt.Service;
 import com.example.miniprojekt.Model.WishItemModel;
 import com.example.miniprojekt.Repository.WishItemRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -11,7 +10,7 @@ public class WishItemService {
 
     private WishItemRepository wishItemRepository;
 
-    public WishItemService  (WishItemRepository wishItemRepository){
+    public WishItemService(WishItemRepository wishItemRepository) {
         this.wishItemRepository = wishItemRepository;
     }
 
@@ -22,7 +21,6 @@ public class WishItemService {
                 .orElse(null);
     }
 
-
     public WishItemModel saveWishItem(WishItemModel wishItem) {
         return wishItemRepository.saveWishItem(wishItem);
     }
@@ -31,12 +29,12 @@ public class WishItemService {
         wishItemRepository.deleteItemByItemID(itemID);
     }
 
-    public void createWishItem( String itemTitle ,String itemDescription, double itemPrice, String itemURL){
-        wishItemRepository.createWishItem(itemTitle ,itemDescription, itemPrice, itemURL);
+    public void createWishItem(String itemTitle, String itemDescription, double itemPrice, String itemURL) {
+        wishItemRepository.createWishItem(itemTitle, itemDescription, itemPrice, itemURL);
         System.out.println(itemTitle + itemDescription + itemPrice);
     }
 
-    public List<WishItemModel> getAllItems(){
+    public List<WishItemModel> getAllItems() {
         return wishItemRepository.getAllItems();
     }
 
@@ -44,9 +42,8 @@ public class WishItemService {
         return wishItemRepository.getItemsByWishlistId(wishlistId);
     }
 
-
     public void createWishItemForWishlist(int wishlistId, String itemTitle, String itemDescription, double itemPrice, String itemURL) {
         wishItemRepository.createWishItemForWishlist(wishlistId, itemTitle, itemDescription, itemPrice, itemURL);
     }
-    }
+}
 
