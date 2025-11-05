@@ -16,7 +16,7 @@
         <p th:text="${error}"></p>
     </div>
 
-    <form th:action="@{/registerpage}" th:object="${user}" method="post">
+    <form th:action="@{/login/create-user}" th:object="${user}" method="post">
         <div class="form-group">
             <label for="userName">Username:</label>
             <input type="text" id="userName" th:field="*{userName}" required>

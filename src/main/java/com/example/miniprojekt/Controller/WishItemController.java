@@ -5,7 +5,6 @@ import com.example.miniprojekt.Service.WishItemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @Controller
@@ -26,7 +25,7 @@ public class WishItemController {
         model.addAttribute("items", items);
         model.addAttribute("wishlistId", wishlistId);
 
-        return "wishlistItems";
+        return "wishlistitems";
     }
 
     @PostMapping("/createitem")

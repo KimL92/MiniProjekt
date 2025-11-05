@@ -3,7 +3,6 @@ package com.example.miniprojekt.Repository;
 import com.example.miniprojekt.Model.WishlistModel;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 @Repository

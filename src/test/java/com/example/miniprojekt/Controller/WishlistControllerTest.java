@@ -1,43 +1,83 @@
 package com.example.miniprojekt.Controller;
 
+import com.example.miniprojekt.Model.WishlistModel;
 import com.example.miniprojekt.Service.WishlistService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
-
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.times;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import java.util.ArrayList;
+import java.util.List;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(WishlistController.class)
-public class WishlistControllerTest {
+@ExtendWith(MockitoExtension.class)
+class WishlistControllerTest {
 
-    @MockitoBean
+    @Mock
     private WishlistService wishlistService;
 
-    @Autowired
+    private WishlistController wishlistController;
+
     private MockMvc mockMvc;
 
-    // Test af /createwishlist (uden verify, da service ikke kaldes)
-    @Test
-    void testCreateWishlistViewLoads() throws Exception {
-        mockMvc.perform(get("/wishitem/createwishlist"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("wishlists"))
-                .andExpect(model().attributeExists("wishlistitem"));
+    @BeforeEach
+    void setUp() {
+        wishlistController = new WishlistController(wishlistService);
+
+        // Konfigurer ViewResolver for at undgå circular view path fejl
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setPrefix("/templates/");
+        viewResolver.setSuffix(".html");
+
+        mockMvc = MockMvcBuilders.standaloneSetup(wishlistController)
+                .setViewResolvers(viewResolver)
+                .build();
     }
 
-    // Test af /createwishlistt (med verify, fordi service kaldes)
     @Test
-    void testCreateWishlistCallsService() throws Exception {
-        mockMvc.perform(get("/wishitem/createwishlistt"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("createItem"));
+    void showAllWishlists() throws Exception {
+        // Arrange - Forbered test data
+        List<WishlistModel> wishlists = new ArrayList<>();
+        wishlists.add(new WishlistModel(33, "neymar", "bold"));
+        wishlists.add(new WishlistModel(10, "messi", "barcelona"));
 
-        // verify at servicen blev kaldt med det forventede navn
-        verify(wishlistService, times(1)).createWishlist("Alan til salg", "Hej");
+        when(wishlistService.getAllWishlists()).thenReturn(wishlists);
+
+        // Act & Assert - Udfør request og verificer resultat
+        mockMvc.perform(MockMvcRequestBuilders.get("/wishlist"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("wishlist"))
+                .andExpect(model().attributeExists("wishlists"))
+                .andExpect(model().attribute("wishlists", wishlists));
+
+        // Verify - Tjek at service metoden blev kaldt
+        verify(wishlistService, times(1)).getAllWishlists();
+    }
+
+    @Test
+    void showCreateForm() {
+
+    }
+
+    @Test
+    void createWishList() {
+    }
+
+    @Test
+    void saveWishList() {
+    }
+
+    @Test
+    void deleteWishlist() {
+    }
+
+    @Test
+    void deleteWishlistItem() {
     }
 }

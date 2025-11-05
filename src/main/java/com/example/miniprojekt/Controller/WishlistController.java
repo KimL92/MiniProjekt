@@ -55,11 +55,5 @@ public class WishlistController {
         wishlistService.deleteWishlist(id);
         return "redirect:/wishlist";
     }
-
-    @PostMapping("/deleteitem/{id}")
-    public String deleteWishlistItem(@PathVariable int id) {
-        wishlistService.deleteWishlistItem(id);
-        return "redirect:/wishlist";
-    }
 }
 

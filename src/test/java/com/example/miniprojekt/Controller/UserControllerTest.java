@@ -2,30 +2,39 @@ package com.example.miniprojekt.Controller;
 
 import ch.qos.logback.core.model.Model;
 import com.example.miniprojekt.Model.UserModel;
-import com.example.miniprojekt.Service.UserService;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import static javax.management.Query.eq;
+import static jdk.internal.org.objectweb.asm.util.CheckClassAdapter.verify;
+import static jdk.jfr.internal.jfc.model.Constraint.any;
+import static org.junit.jupiter.api.Assertions.*;
+class UserControllerTest {
 
-@Controller
-@RequestMapping("/wishitem")
-public class UserController {
+    @Mock
+    private Model model;
 
-    private final UserService userService;
+    @InjectMocks
+    private UserController userController;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
     }
 
-    @GetMapping("/registeruser")
-    public String showRegisterUserForm(Model model) {
-        model.addAttribute("user", new UserModel());
-        return "register-user";
+    @Test
+    void createUser() {
+        // Act
+        String seName = userController.createUser(model);
+
+        // Assert
+        verify(model).addAttribute(eq("user"), any(UserModel.class));
+        assertEquals("register-user", seName);
     }
 
-    @GetMapping("/register")
-    public String createUser() {
-        userService.createUser("Moha2200", "moha2200@stud.ek.dk", "mohafremmede");
-        return "register-user";
+    @Test
+    void createUserPost() {
     }
 }
