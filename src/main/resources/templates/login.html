@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Log ind</title>
     <link th:href="@{/login.css}" rel="stylesheet">
 </head>
 <body>
 <div class="container">
-    <h1>Welcome to 1 Ummahs wishlist</h1>
+    <h1>Velkommen til 1 Ummahs ønskeliste</h1>
 
     <!-- Error message -->
     <div th:if="${error}" class="error-message">
@@ -18,7 +18,7 @@
     <form th:action="@{/login/validate-login}" method="post">
 
         <div class="form-group">
-            <label for="username">Username:</label>
+            <label for="username">Brugernavn:</label>
             <input type="text"
                    name="username"
                    id="username"
@@ -35,13 +35,11 @@
                    required>
         </div>
 
-        <button type="submit" class="btn-submit">Login</button>
+        <button type="submit" class="btn-submit">Log ind</button>
     </form>
 
-    <!-- LINK TIL CREATE USER (ikke en form) -->
     <p>
-        <a th:href="@{/login/create-user}" class="btn-submit">Create user</a>
-        <!-- Alternativt relativt link fra /login-siden: <a th:href="@{create-user}"> -->
+        <a th:href="@{/login/create-user}" class="btn-submit">Opret bruger</a>
     </p>
 </div>
 </body>

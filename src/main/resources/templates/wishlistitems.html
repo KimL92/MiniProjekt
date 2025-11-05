@@ -7,13 +7,13 @@
 </head>
 <body>
 
-<h1>Add wishes</h1>
+<h1>Tilføj ønske</h1>
 
 <table>
     <tr th:if="${items != null and !#lists.isEmpty(items)}">
-        <th>Name</th>
-        <th>Description</th>
-        <th>Price</th>
+        <th>Navn</th>
+        <th>Beskrivelse</th>
+        <th>Pris</th>
         <th>Link</th>
     </tr>
 
@@ -33,19 +33,19 @@
     </tr>
 </table>
 
-<h2>Add new wish</h2>
+<h2>Tilføj nyt ønske</h2>
 <form th:action="@{/wishitem/createitem}" method="post">
     <input type="hidden" name="wishlistId" th:value="${wishlistId}">
 
-    <label>Title:</label>
+    <label>Titel:</label>
     <input type="text" name="itemTitle">
     <br>
 
-    <label>Description:</label>
+    <label>Beskrivelse:</label>
     <input type="text" name="itemDescription">
     <br>
 
-    <label>Price:</label>
+    <label>Pris:</label>
     <input type="number" step="0.01" name="itemPrice">
     <br>
 
@@ -53,11 +53,11 @@
     <input type="text" name="itemURL">
     <br>
 
-    <button type="submit">Add wish</button>
+    <button type="submit">Tilføj</button>
 </form>
 <br>
 
-<a th:href="@{/wishlist}" >← Return to wishlists</a>
+<a th:href="@{/wishlist}" >← Tilbage til ønskelister</a>
 
 </body>
 </html>
