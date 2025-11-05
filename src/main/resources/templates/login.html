@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log ind</title>
+    <link th:href="@{/login.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1>Velkommen til 1 Ummahs ønskeliste</h1>
+
+    <!-- Error message -->
+    <div th:if="${error}" class="error-message">
+        <p th:text="${error}"></p>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <form th:action="@{/login/validate-login}" method="post">
+
+        <div class="form-group">
+            <label for="username">Brugernavn:</label>
+            <input type="text"
+                   name="username"
+                   id="username"
+                   placeholder="Username"
+                   required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password"
+                   name="password"
+                   id="password"
+                   placeholder="Password"
+                   required>
+        </div>
+
+        <button type="submit" class="btn-submit">Log ind</button>
+    </form>
+
+    <p>
+        <a th:href="@{/login/create-user}" class="btn-submit">Opret bruger</a>
+    </p>
+</div>
+</body>
+</html>

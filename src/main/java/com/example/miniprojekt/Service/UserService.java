@@ -1,8 +1,6 @@
 package com.example.miniprojekt.Service;
 
-import com.example.miniprojekt.Model.UserModel;
 import com.example.miniprojekt.Repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +27,11 @@ public class UserService {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public int validateLogin(String username, String userPassword) {
+        int id = 0;
+        id = userRepository.validateLogin(username, userPassword);
+        return id;
     }
 }

@@ -6,7 +6,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -19,7 +18,6 @@ public class WishlistServiceTest {
     @InjectMocks
     private WishlistService wishlistService;
 
-
     @Test
     void createWishlist(){
         String wishlistName = "allans 18 års";
@@ -29,6 +27,4 @@ public class WishlistServiceTest {
 
         verify(wishlistRepository,times(1)).createWishlist(wishlistName, wishlistDescription);
     }
-
-
 }

@@ -3,7 +3,6 @@ package com.example.miniprojekt.Repository;
 import com.example.miniprojekt.Model.WishlistModel;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 @Repository
@@ -27,6 +26,15 @@ public class WishlistRepository {
                 rs.getString("wishlist_name"),
                 rs.getString("wishlist_description")
         ), wishlistId);
+    }
+
+    public List<WishlistModel> findWishlistByUserID(int userID) {
+        String sql = "SELECT w.* FROM wishlist w INNER JOIN user_wishlist uw ON w.wishlist_id = uw.wishlist_id WHERE uw.user_id = ?;";
+        return jdbcTemplate.query(sql, (rs, rowNum) -> new WishlistModel(
+                rs.getInt("wishlist_id"),
+                rs.getString("wishlist_name"),
+                rs.getString("wishlist_description")
+        ), userID);
     }
 
     public List<WishlistModel> getAllWishlists() {

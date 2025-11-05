@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="da">
 <head>
     <meta charset="UTF-8">
-    <title>Ønskeliste</title>
-    <link th:href="@{/main.css}" rel="stylesheet">
+    <title>Wishlist</title>
+    <link th:href="@{/wishlistitems.css}" rel="stylesheet">
 </head>
 <body>
 
-<h1>Tilføj ønsker </h1>
+<h1>Tilføj ønske</h1>
 
 <table>
     <tr th:if="${items != null and !#lists.isEmpty(items)}">
@@ -27,7 +27,7 @@
             <form th:action="@{/wishitem/delete}" method="post">
             <input type="hidden" name="itemID" th:value="${item.itemID}">
             <input type="hidden" name="wishlistId" th:value="${wishlistId}">
-            <button type="submit">Slet</button>
+            <button type="submit">Delete</button>
             </form>
         </td>
     </tr>
@@ -49,15 +49,15 @@
     <input type="number" step="0.01" name="itemPrice">
     <br>
 
-    <label>URL:</label>
+    <label>Link:</label>
     <input type="text" name="itemURL">
     <br>
 
-    <button type="submit">Tilføj ønske</button>
+    <button type="submit">Tilføj</button>
 </form>
 <br>
 
-<a th:href="@{/wishlist}">← Tilbage til ønskelister</a>
+<a th:href="@{/wishlist}" >← Tilbage til ønskelister</a>
 
 </body>
 </html>

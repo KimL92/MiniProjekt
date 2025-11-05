@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Ønskeskyen</title>
-    <link th:href="@{/main.css}" rel="stylesheet">
+    <link th:href="@{/wishlist.css}" rel="stylesheet">
 </head>
 <body>
 <h1>Ønskelister</h1>
 
 <table>
     <tr th:if="${wishlists == null or #lists.isEmpty(wishlists)}">
-        <td colspan="3">Der er ingen ønskelister endnu</td>
+        <td colspan="3">Der er ikke nogen ønskeliste</td>
     </tr>
 
     <tr th:if="${wishlists != null and !#lists.isEmpty(wishlists)}">
-        <th>Navn</th>
-        <th>Beskrivelse</th>
-        <th>Handling</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Action</th>
     </tr>
 
     <tr th:each="wishlist : ${wishlists}">
