@@ -21,7 +21,6 @@ public class WishItemController {
     public String showItemsForWishlist(@PathVariable int wishlistId, Model model) {
         // Hent alle items der hører til denne ønskeliste
         List<WishItemModel> items = wishItemService.getItemsByWishlistId(wishlistId);
-
         model.addAttribute("items", items);
         model.addAttribute("wishlistId", wishlistId);
 
