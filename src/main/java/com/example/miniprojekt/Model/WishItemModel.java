@@ -9,7 +9,7 @@ public class WishItemModel {
 
     public WishItemModel(){}
 
-    public WishItemModel( Integer itemID, String itemTitle, String itemDescription, double itemPrice, String itemURL) {
+    public WishItemModel(Integer itemID, String itemTitle, String itemDescription, double itemPrice, String itemURL) {
         this.itemID = itemID;
         this.itemTitle = itemTitle;
         this.itemDescription = itemDescription;
