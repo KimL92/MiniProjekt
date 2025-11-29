@@ -46,11 +46,11 @@ public class UserController {
         return "redirect:/wishlist";
     }
 
-    @GetMapping("/gotocreateuser")
-    public String createUserSite(Model model) {
-        model.addAttribute("user", new UserModel());
-        return "redirect:/register-user";
-    }
+     // @GetMapping("/gotocreateuser")
+     // public String createUserSite(Model model) {
+     //   model.addAttribute("user", new UserModel());
+     //   return "redirect:/register-user";
+     //}
 
     @PostMapping("/validate-login")
     public String validateLogin(@RequestParam("username") String username, @RequestParam("password") String userPassword, Model model) {
